@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Panel_Base.h"
+#include "VBAP_Control_Subpanel.h"
 
 class ControlPanel
 : public PanelBase
@@ -18,4 +19,7 @@ class ControlPanel
 public:
     ControlPanel();
     ~ControlPanel();
+    
+private:
+    std::unique_ptr<VBAP_Panel> mVBAP_Panel;
 };

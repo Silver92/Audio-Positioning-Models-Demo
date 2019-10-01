@@ -13,6 +13,9 @@
 ControlPanel::ControlPanel()
 {
     setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
+    
+    mVBAP_Panel.reset(new VBAP_Panel());
+    addAndMakeVisible(mVBAP_Panel.get());
 }
 
 ControlPanel::~ControlPanel()
