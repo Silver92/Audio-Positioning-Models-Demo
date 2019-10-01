@@ -9,3 +9,13 @@
 */
 
 #pragma once
+
+#include "Panel_Base.h"
+
+class ViewPanel
+: public PanelBase
+{
+public:
+    ViewPanel();
+    ~ViewPanel();
+};

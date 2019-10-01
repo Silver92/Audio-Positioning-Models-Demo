@@ -9,3 +9,13 @@
 */
 
 #include "View_Panel.h"
+
+ViewPanel::ViewPanel()
+{
+    setSize(VIEW_PANEL_WIDTH, VIEW_PANEL_HEIGHT);
+}
+
+ViewPanel::~ViewPanel()
+{
+    
+}

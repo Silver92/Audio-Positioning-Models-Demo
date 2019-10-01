@@ -9,3 +9,13 @@
 */
 
 #include "Control_Panel.h"
+
+ControlPanel::ControlPanel()
+{
+    setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
+}
+
+ControlPanel::~ControlPanel()
+{
+    
+}

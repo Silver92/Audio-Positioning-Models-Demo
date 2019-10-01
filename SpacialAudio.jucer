@@ -14,6 +14,8 @@
       <FILE id="RkmS3E" name="DBAP.h" compile="0" resource="0" file="Source/DBAP.h"/>
     </GROUP>
     <GROUP id="{9D2263F5-460A-873D-BBED-951C410C410D}" name="UI">
+      <FILE id="igngQG" name="Panel_Base.cpp" compile="1" resource="0" file="Source/Panel_Base.cpp"/>
+      <FILE id="kvGYgW" name="Panel_Base.h" compile="0" resource="0" file="Source/Panel_Base.h"/>
       <FILE id="dw1LEl" name="View_Panel.cpp" compile="1" resource="0" file="Source/View_Panel.cpp"/>
       <FILE id="Tq0rxJ" name="View_Panel.h" compile="0" resource="0" file="Source/View_Panel.h"/>
       <FILE id="Aa4aHi" name="2D_View_Subpanel.cpp" compile="1" resource="0"
@@ -35,6 +37,9 @@
             file="Source/DBAP_Control_Subpanel.cpp"/>
       <FILE id="YHxmm2" name="DBAP_Control_Subpanel.h" compile="0" resource="0"
             file="Source/DBAP_Control_Subpanel.h"/>
+    </GROUP>
+    <GROUP id="{71403483-A7BC-F008-93AF-5C8BFC2F2EDB}" name="Other">
+      <FILE id="SwGkYD" name="UI_Dimensions.h" compile="0" resource="0" file="Source/UI_Dimensions.h"/>
     </GROUP>
     <GROUP id="{86336543-4318-80B7-E026-1F4D0A45EB14}" name="Source">
       <FILE id="rNF5OM" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
