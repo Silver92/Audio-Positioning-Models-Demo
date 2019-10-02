@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "JuceHeader.h"
 #include "Panel_Base.h"
 
 class VBAP_Panel
@@ -18,7 +17,7 @@ class VBAP_Panel
 {
 public:
     
-    VBAP_Panel();
+    VBAP_Panel(std::shared_ptr<ModelManager> inModelManager);
     ~VBAP_Panel();
     
 private:

@@ -9,3 +9,13 @@
 */
 
 #include "DBAP.h"
+
+DBAP::DBAP()
+{
+    
+}
+
+DBAP::~DBAP()
+{
+    
+}

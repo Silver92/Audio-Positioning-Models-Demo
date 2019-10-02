@@ -10,7 +10,8 @@
 
 #include "View_Panel.h"
 
-ViewPanel::ViewPanel()
+ViewPanel::ViewPanel(std::shared_ptr<ModelManager> inModelManager)
+:   PanelBase(inModelManager)
 {
     setSize(VIEW_PANEL_WIDTH, VIEW_PANEL_HEIGHT);
 }

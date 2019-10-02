@@ -9,3 +9,14 @@
 */
 
 #pragma once
+#include "Model_Manager.h"
+
+class VBAP
+: public ModelManager
+{
+public:
+    VBAP();
+    ~VBAP();
+    
+    void calVBAP(std::vector<std::shared_ptr<Label>>& inPos) override;
+};

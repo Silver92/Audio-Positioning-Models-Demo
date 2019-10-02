@@ -10,9 +10,9 @@
 
 #include "Panel_Base.h"
 
-PanelBase::PanelBase()
+PanelBase::PanelBase(std::shared_ptr<ModelManager> inModelManager)
 {
-    
+    mModelManager = inModelManager;
 }
 
 PanelBase::~PanelBase()

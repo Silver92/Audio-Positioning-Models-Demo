@@ -14,12 +14,15 @@ MainComponent::MainComponent()
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
-    mViewPanel.reset(new ViewPanel());
+    mModelManager.reset(new ModelManager());
+    
+    mViewPanel.reset(new ViewPanel(mModelManager));
     addAndMakeVisible(mViewPanel.get());
     
-    mControlPanel.reset(new ControlPanel());
+    mControlPanel.reset(new ControlPanel(mModelManager));
     mControlPanel->setBounds(VIEW_PANEL_WIDTH, 0, getWidth(), getHeight());
     addAndMakeVisible(mControlPanel.get());
+    
 }
 
 MainComponent::~MainComponent()

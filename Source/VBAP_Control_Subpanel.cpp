@@ -10,7 +10,8 @@
 
 #include "VBAP_Control_Subpanel.h"
 
-VBAP_Panel::VBAP_Panel()
+VBAP_Panel::VBAP_Panel(std::shared_ptr<ModelManager> inModelManager)
+: PanelBase(inModelManager)
 {
     setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
     
@@ -37,7 +38,7 @@ VBAP_Panel::VBAP_Panel()
     
     runButton.setButtonText("Run");
     runButton.setColour(TextButton::buttonColourId, Colours::whitesmoke.darker());
-    
+    runButton.onClick = [this] {;};
     addAndMakeVisible(runButton);
 }
 

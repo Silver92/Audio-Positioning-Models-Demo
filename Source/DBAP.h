@@ -9,3 +9,10 @@
 */
 
 #pragma once
+
+class DBAP
+{
+public:
+    DBAP();
+    ~DBAP();
+};

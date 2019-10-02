@@ -9,3 +9,18 @@
 */
 
 #include "Model_Manager.h"
+
+ModelManager::ModelManager()
+{
+    
+}
+
+ModelManager::~ModelManager()
+{
+    
+}
+
+void ModelManager::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
+{
+    
+}

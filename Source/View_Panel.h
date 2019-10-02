@@ -16,6 +16,6 @@ class ViewPanel
 : public PanelBase
 {
 public:
-    ViewPanel();
+    ViewPanel(std::shared_ptr<ModelManager> inModelManager);
     ~ViewPanel();
 };

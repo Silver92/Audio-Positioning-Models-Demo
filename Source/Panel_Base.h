@@ -12,16 +12,17 @@
 
 #include "JuceHeader.h"
 #include "UI_Dimensions.h"
+#include "Model_Manager.h"
 
 class PanelBase
 :   public  Component
 {
 public:
-    PanelBase();
+    PanelBase(std::shared_ptr<ModelManager> inModelManager);
     ~PanelBase();
     
     void paint (Graphics& g) override;
     
 protected:
-    
+    std::shared_ptr<ModelManager> mModelManager;
 };

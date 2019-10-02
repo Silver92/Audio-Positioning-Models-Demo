@@ -12,12 +12,13 @@
 
 #include "Panel_Base.h"
 #include "VBAP_Control_Subpanel.h"
+#include "VBAP.h"
 
 class ControlPanel
 : public PanelBase
 {
 public:
-    ControlPanel();
+    ControlPanel(std::shared_ptr<ModelManager> inModelManager);
     ~ControlPanel();
     
 private:
