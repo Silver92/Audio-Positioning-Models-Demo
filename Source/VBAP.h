@@ -18,5 +18,5 @@ public:
     VBAP();
     ~VBAP();
     
-    void calVBAP(std::vector<std::shared_ptr<Label>>& inPos) override;
+    std::vector<float> calVBAP(std::vector<std::shared_ptr<Label>>& inPos) override;
 };

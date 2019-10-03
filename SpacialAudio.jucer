@@ -57,6 +57,7 @@
             file="Source/DBAP_Control_Subpanel.h"/>
     </GROUP>
     <GROUP id="{71403483-A7BC-F008-93AF-5C8BFC2F2EDB}" name="Other">
+      <FILE id="s3bVOp" name="Audio_Helper.h" compile="0" resource="0" file="Source/Audio_Helper.h"/>
       <FILE id="jpQSyv" name="TODO.h" compile="0" resource="0" file="Source/TODO.h"/>
       <FILE id="SwGkYD" name="UI_Dimensions.h" compile="0" resource="0" file="Source/UI_Dimensions.h"/>
     </GROUP>

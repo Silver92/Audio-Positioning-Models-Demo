@@ -176,6 +176,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		05CA998495C713E197B49B2B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "Audio_Helper.h";
+			path = "../../Source/Audio_Helper.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		0BF317856626A671BBBD80FB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -742,6 +749,7 @@
 		06BD4EDD2F590FAF4745AF85 = {
 			isa = PBXGroup;
 			children = (
+				05CA998495C713E197B49B2B,
 				2CD24A19C48D454554E1A1EA,
 				4728F5BF3FFA09FD98604887,
 			);

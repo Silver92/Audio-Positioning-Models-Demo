@@ -16,8 +16,10 @@ class Speaker
 :   public ViewComponentBase
 {
 public:
-    Speaker();
+    Speaker(String indBValue);
     ~Speaker();
     void paint(Graphics& g) override;
     void mouseDown (const MouseEvent&) override;
+private:
+    String dBValue;
 };

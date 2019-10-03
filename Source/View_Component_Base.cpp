@@ -12,7 +12,7 @@
 
 ViewComponentBase::ViewComponentBase()
 {
-    setSize(30, 30);
+    setSize(50, 50);
 }
 
 ViewComponentBase::~ViewComponentBase()

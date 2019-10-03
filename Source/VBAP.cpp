@@ -20,7 +20,7 @@ VBAP::~VBAP()
     
 }
 
-void VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
+std::vector<float> VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
 {
     std::vector<float> ampVectors;
     float x0 = inPos[0]->getText().getFloatValue();
@@ -66,11 +66,13 @@ void VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
                   vSourceX * ampVectors[index1+1]) / denorm;
     for (int i = 0; i < ampVectors.size() - 3; i +=2) {
         if (i == index1) {
-            gainVectors.push_back(gain1);
+            gainVectors.push_back(Decibels::gainToDecibels(denormalize(gain1)));
         } else if (i == index2) {
-            gainVectors.push_back(gain2);
+            gainVectors.push_back(Decibels::gainToDecibels(denormalize(gain2)));
         } else {
-            gainVectors.push_back(0.f);
+            gainVectors.push_back(Decibels::gainToDecibels(0.f));
         }
     }
+    
+    return gainVectors;
 }

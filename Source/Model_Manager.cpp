@@ -20,7 +20,8 @@ ModelManager::~ModelManager()
     
 }
 
-void ModelManager::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
+std::vector<float> ModelManager::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
 {
-    
+    std::vector<float> vec;
+    return vec;
 }

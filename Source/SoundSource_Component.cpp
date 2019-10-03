@@ -26,7 +26,8 @@ void SoundSource::paint(Graphics& g)
     g.fillEllipse(getLocalBounds().toFloat());
     
     g.setColour(Colours::black);
-    g.drawText("0.8", getLocalBounds(), Justification::centred);
+    g.setFont(16);
+    g.drawText("S", getLocalBounds(), Justification::centred);
 }
 
 void SoundSource::mouseDown(const MouseEvent&)

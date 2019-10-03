@@ -1888,6 +1888,7 @@
     <ClInclude Include="..\..\Source\VBAP_Control_Subpanel.h"/>
     <ClInclude Include="..\..\Source\MDAP_Control_Subpanel.h"/>
     <ClInclude Include="..\..\Source\DBAP_Control_Subpanel.h"/>
+    <ClInclude Include="..\..\Source\Audio_Helper.h"/>
     <ClInclude Include="..\..\Source\TODO.h"/>
     <ClInclude Include="..\..\Source\UI_Dimensions.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>

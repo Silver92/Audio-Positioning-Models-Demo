@@ -26,7 +26,8 @@ void Listener::paint(Graphics& g)
     g.fillEllipse(getLocalBounds().toFloat());
     
     g.setColour(Colours::black);
-    g.drawText("0.1", getLocalBounds(), Justification::centred);
+    g.setFont(16);
+    g.drawText("L", getLocalBounds(), Justification::centred);
 }
 
 void Listener::mouseDown(const MouseEvent&)

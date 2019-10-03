@@ -23,12 +23,19 @@ MainComponent::MainComponent()
     mModelManager.reset(new VBAP());
     
     mControlPanel->mVBAPPanel->runButton.onClick = [this]
-    {mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos);};
+    {mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos,
+                                          mModelManager->calVBAP(mControlPanel->mVBAPPanel->mPos));
+        
+    };
     
 }
 
 MainComponent::~MainComponent()
 {
+//    File OutFile("TestOutput.txt");
+//    FileOutputStream OutStream(OutFile);
+//    if (OutStream.openedOk())
+//        OutStream.writeFloat(1.0f);
 }
 
 //==============================================================================

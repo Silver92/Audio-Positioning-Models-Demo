@@ -25,7 +25,8 @@ void TwoDSubpanel::paint(Graphics& g)
     
 }
 
-void TwoDSubpanel::drawComponents(const std::vector<std::shared_ptr<Label>>& inPos)
+void TwoDSubpanel::drawComponents(const std::vector<std::shared_ptr<Label>>& inPos,
+                                  const std::vector<float>& dBFSs)
 {
     listener.clear();
     speakers.clear();
@@ -40,7 +41,7 @@ void TwoDSubpanel::drawComponents(const std::vector<std::shared_ptr<Label>>& inP
             listener.push_back(mListener);
         // Draw Speakers
         } else if (i > 0 && i < inPos.size() - 3) {
-            std::shared_ptr<Speaker> mTestSpeaker (new Speaker());
+            std::shared_ptr<Speaker> mTestSpeaker (new Speaker(String(dBFSs[i], 1)));
             mTestSpeaker->setCentrePosition(inPos[i]->getText().getFloatValue(),
                                             inPos[i+1]->getText().getFloatValue());
             addAndMakeVisible(mTestSpeaker.get());

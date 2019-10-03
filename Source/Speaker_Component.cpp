@@ -10,9 +10,9 @@
 
 #include "Speaker_Component.h"
 
-Speaker::Speaker()
+Speaker::Speaker(String indBValue)
 {
-    
+    dBValue = indBValue;
 }
 
 Speaker::~Speaker()
@@ -26,7 +26,8 @@ void Speaker::paint(Graphics& g)
     g.fillEllipse(getLocalBounds().toFloat());
     
     g.setColour(Colours::black);
-    g.drawText("0.5", getLocalBounds(), Justification::centred);
+    g.setFont(10);
+    g.drawText(dBValue + "dB", getLocalBounds(), Justification::centred);
 }
 
 void Speaker::mouseDown (const MouseEvent& mouseEvent)

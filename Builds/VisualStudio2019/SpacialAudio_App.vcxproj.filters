@@ -2349,6 +2349,9 @@
     <ClInclude Include="..\..\Source\DBAP_Control_Subpanel.h">
       <Filter>SpacialAudio\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Audio_Helper.h">
+      <Filter>SpacialAudio\Other</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\TODO.h">
       <Filter>SpacialAudio\Other</Filter>
     </ClInclude>

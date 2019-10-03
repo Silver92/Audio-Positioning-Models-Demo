@@ -20,4 +20,5 @@ public:
     ~Listener();
     void paint(Graphics& g) override;
     void mouseDown (const MouseEvent&) override;
+private:
 };
