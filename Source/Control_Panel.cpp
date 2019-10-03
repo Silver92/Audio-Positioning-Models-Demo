@@ -10,14 +10,12 @@
 
 #include "Control_Panel.h"
 
-ControlPanel::ControlPanel(std::shared_ptr<ModelManager> inModelManager)
-: PanelBase(inModelManager)
+ControlPanel::ControlPanel()
 {
-    setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
+    setSize (CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
     
-    mModelManager.reset(new VBAP());
-    mVBAP_Panel.reset(new VBAP_Panel(inModelManager));
-    addAndMakeVisible(mVBAP_Panel.get());
+    mVBAPPanel.reset(new VBAPSubpanel());
+    addAndMakeVisible(mVBAPPanel.get());
 }
 
 ControlPanel::~ControlPanel()

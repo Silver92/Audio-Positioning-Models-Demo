@@ -5,6 +5,9 @@
     <Filter Include="SpacialAudio\Models">
       <UniqueIdentifier>{B6D52E8F-1190-6365-A0AC-09F30379F16C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpacialAudio\UI\View Components">
+      <UniqueIdentifier>{60E579F5-2AE2-CDDA-F7FA-4D97CC32F3E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SpacialAudio\UI">
       <UniqueIdentifier>{01B59867-2609-7DD2-4075-6D400717BA60}</UniqueIdentifier>
     </Filter>
@@ -417,6 +420,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\DBAP.cpp">
       <Filter>SpacialAudio\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\View_Component_Base.cpp">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Listener_Component.cpp">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SoundSource_Component.cpp">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Speaker_Component.cpp">
+      <Filter>SpacialAudio\UI\View Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Panel_Base.cpp">
       <Filter>SpacialAudio\UI</Filter>
@@ -2301,6 +2316,18 @@
     <ClInclude Include="..\..\Source\DBAP.h">
       <Filter>SpacialAudio\Models</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\View_Component_Base.h">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Listener_Component.h">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SoundSource_Component.h">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Speaker_Component.h">
+      <Filter>SpacialAudio\UI\View Components</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Panel_Base.h">
       <Filter>SpacialAudio\UI</Filter>
     </ClInclude>
@@ -2321,6 +2348,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\DBAP_Control_Subpanel.h">
       <Filter>SpacialAudio\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\TODO.h">
+      <Filter>SpacialAudio\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI_Dimensions.h">
       <Filter>SpacialAudio\Other</Filter>

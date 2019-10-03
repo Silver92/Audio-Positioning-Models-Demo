@@ -12,14 +12,16 @@
 
 #include "Panel_Base.h"
 
-class VBAP_Panel
+class VBAPSubpanel
 :   public PanelBase
 {
 public:
     
-    VBAP_Panel(std::shared_ptr<ModelManager> inModelManager);
-    ~VBAP_Panel();
+    VBAPSubpanel();
+    ~VBAPSubpanel();
     
+    TextButton runButton;
+    std::vector<std::shared_ptr<Label>> mPos;
 private:
     
     void paint (Graphics& g) override;
@@ -32,8 +34,6 @@ private:
     Label listenerPosTitle;
     Label speakerPosTitle;
     Label sourcePosTitle;
-    TextButton runButton;
     
-    std::vector<std::shared_ptr<Label>> mPos;
     std::vector<std::shared_ptr<Label>> mXYLabel;
 };

@@ -7,21 +7,23 @@
 */
 
 #include "MainComponent.h"
-#include "UI_Dimensions.h"
 
 //==============================================================================
 MainComponent::MainComponent()
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
-    mModelManager.reset(new ModelManager());
-    
-    mViewPanel.reset(new ViewPanel(mModelManager));
-    addAndMakeVisible(mViewPanel.get());
-    
-    mControlPanel.reset(new ControlPanel(mModelManager));
+    mControlPanel.reset(new ControlPanel());
     mControlPanel->setBounds(VIEW_PANEL_WIDTH, 0, getWidth(), getHeight());
     addAndMakeVisible(mControlPanel.get());
+    
+    mViewPanel.reset(new ViewPanel());
+    addAndMakeVisible(mViewPanel.get());
+    
+    mModelManager.reset(new VBAP());
+    
+    mControlPanel->mVBAPPanel->runButton.onClick = [this]
+    {mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos);};
     
 }
 

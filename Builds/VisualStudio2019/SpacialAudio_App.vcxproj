@@ -142,6 +142,10 @@
     <ClCompile Include="..\..\Source\VBAP.cpp"/>
     <ClCompile Include="..\..\Source\MDAP.cpp"/>
     <ClCompile Include="..\..\Source\DBAP.cpp"/>
+    <ClCompile Include="..\..\Source\View_Component_Base.cpp"/>
+    <ClCompile Include="..\..\Source\Listener_Component.cpp"/>
+    <ClCompile Include="..\..\Source\SoundSource_Component.cpp"/>
+    <ClCompile Include="..\..\Source\Speaker_Component.cpp"/>
     <ClCompile Include="..\..\Source\Panel_Base.cpp"/>
     <ClCompile Include="..\..\Source\View_Panel.cpp"/>
     <ClCompile Include="..\..\Source\2D_View_Subpanel.cpp"/>
@@ -1873,6 +1877,10 @@
     <ClInclude Include="..\..\Source\VBAP.h"/>
     <ClInclude Include="..\..\Source\MDAP.h"/>
     <ClInclude Include="..\..\Source\DBAP.h"/>
+    <ClInclude Include="..\..\Source\View_Component_Base.h"/>
+    <ClInclude Include="..\..\Source\Listener_Component.h"/>
+    <ClInclude Include="..\..\Source\SoundSource_Component.h"/>
+    <ClInclude Include="..\..\Source\Speaker_Component.h"/>
     <ClInclude Include="..\..\Source\Panel_Base.h"/>
     <ClInclude Include="..\..\Source\View_Panel.h"/>
     <ClInclude Include="..\..\Source\2D_View_Subpanel.h"/>
@@ -1880,6 +1888,7 @@
     <ClInclude Include="..\..\Source\VBAP_Control_Subpanel.h"/>
     <ClInclude Include="..\..\Source\MDAP_Control_Subpanel.h"/>
     <ClInclude Include="..\..\Source\DBAP_Control_Subpanel.h"/>
+    <ClInclude Include="..\..\Source\TODO.h"/>
     <ClInclude Include="..\..\Source\UI_Dimensions.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>

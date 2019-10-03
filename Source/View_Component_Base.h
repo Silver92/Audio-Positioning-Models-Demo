@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    Panel_Base.h
-    Created: 30 Sep 2019 5:15:58pm
+    View_Component_Base.h
+    Created: 2 Oct 2019 10:39:02pm
     Author:  Silver
 
   ==============================================================================
@@ -11,17 +11,13 @@
 #pragma once
 
 #include "JuceHeader.h"
-#include "UI_Dimensions.h"
-#include "Model_Manager.h"
 
-class PanelBase
-:   public  Component
+class ViewComponentBase
+:   public Component
 {
 public:
-    PanelBase();
-    ~PanelBase();
-    
-    void paint (Graphics& g) override;
-    
-protected:
+    ViewComponentBase();
+    ~ViewComponentBase();
+    void paint(Graphics& g) override;
+    void mouseDown (const MouseEvent&) override;
 };

@@ -11,11 +11,16 @@
 #pragma once
 
 #include "Panel_Base.h"
+#include "2D_View_Subpanel.h"
 
 class ViewPanel
 : public PanelBase
 {
 public:
-    ViewPanel(std::shared_ptr<ModelManager> inModelManager);
+    ViewPanel();
     ~ViewPanel();
+    
+    std::unique_ptr<TwoDSubpanel> m2DPanel;
+private:
+    
 };

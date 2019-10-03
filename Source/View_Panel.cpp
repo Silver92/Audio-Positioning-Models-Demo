@@ -10,10 +10,12 @@
 
 #include "View_Panel.h"
 
-ViewPanel::ViewPanel(std::shared_ptr<ModelManager> inModelManager)
-:   PanelBase(inModelManager)
+ViewPanel::ViewPanel()
 {
     setSize(VIEW_PANEL_WIDTH, VIEW_PANEL_HEIGHT);
+    
+    m2DPanel.reset(new TwoDSubpanel());
+    addAndMakeVisible(m2DPanel.get());
 }
 
 ViewPanel::~ViewPanel()

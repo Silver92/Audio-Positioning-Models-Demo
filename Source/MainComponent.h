@@ -9,9 +9,10 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "View_Panel.h"
 #include "Control_Panel.h"
+#include "View_Panel.h"
 #include "Model_Manager.h"
+#include "VBAP.h"
 
 //==============================================================================
 /*
@@ -31,9 +32,8 @@ public:
 
 private:
     //==============================================================================
-    std::unique_ptr<ViewPanel> mViewPanel;
     std::unique_ptr<ControlPanel> mControlPanel;
-    std::shared_ptr<ModelManager> mModelManager;
-
+    std::unique_ptr<ViewPanel> mViewPanel;
+    std::unique_ptr<ModelManager> mModelManager;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

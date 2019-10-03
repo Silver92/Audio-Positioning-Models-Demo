@@ -10,8 +10,7 @@
 
 #include "VBAP_Control_Subpanel.h"
 
-VBAP_Panel::VBAP_Panel(std::shared_ptr<ModelManager> inModelManager)
-: PanelBase(inModelManager)
+VBAPSubpanel::VBAPSubpanel()
 {
     setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
     
@@ -42,12 +41,12 @@ VBAP_Panel::VBAP_Panel(std::shared_ptr<ModelManager> inModelManager)
     addAndMakeVisible(runButton);
 }
 
-VBAP_Panel::~VBAP_Panel()
+VBAPSubpanel::~VBAPSubpanel()
 {
     
 }
 
-void VBAP_Panel::paint(Graphics& g)
+void VBAPSubpanel::paint(Graphics& g)
 {
     g.setFont(25);
     g.setColour(Colours::black);
@@ -62,20 +61,20 @@ void VBAP_Panel::paint(Graphics& g)
     drawLine(g, lineDistance);
 }
 
-void VBAP_Panel::drawLine(juce::Graphics &g, int lineDistance)
+void VBAPSubpanel::drawLine(juce::Graphics &g, int lineDistance)
 {
     Line<float> line (Point<float> (0, lineDistance),
                       Point<float> (CONTROL_PANEL_WIDTH, lineDistance));
     g.drawLine(line, 2);
 }
 
-void VBAP_Panel::resized()
+void VBAPSubpanel::resized()
 {
     Rectangle<int> area (2, getBottom() - 45 - 2, getWidth() - 2, 45);
     runButton.setBounds(area);
 }
 
-void VBAP_Panel::setText(Label& label, int fontSize, int xPos, int yPos, int width, String text)
+void VBAPSubpanel::setText(Label& label, int fontSize, int xPos, int yPos, int width, String text)
 {
     label.setFont(fontSize);
     label.setColour(Label::textColourId, Colours::black);
@@ -85,7 +84,7 @@ void VBAP_Panel::setText(Label& label, int fontSize, int xPos, int yPos, int wid
     addAndMakeVisible(label);
 }
 
-void VBAP_Panel::setInput(int fontSize, int xPos, int yPos, int width)
+void VBAPSubpanel::setInput(int fontSize, int xPos, int yPos, int width)
 {
     std::shared_ptr<Label> input (new Label());
     setText(*input, fontSize, xPos, yPos, width);
@@ -95,7 +94,7 @@ void VBAP_Panel::setInput(int fontSize, int xPos, int yPos, int width)
     mPos.push_back(input);
 }
 
-void VBAP_Panel::setPosInput(int fontSize, int yPos)
+void VBAPSubpanel::setPosInput(int fontSize, int yPos)
 {
     std::shared_ptr<Label> textX (new Label());
     setText(*textX, fontSize, 3, yPos, getWidth()/4, "X:");
