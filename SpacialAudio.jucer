@@ -19,6 +19,35 @@
       <FILE id="RkmS3E" name="DBAP.h" compile="0" resource="0" file="Source/DBAP.h"/>
     </GROUP>
     <GROUP id="{9D2263F5-460A-873D-BBED-951C410C410D}" name="UI">
+      <GROUP id="{CA51C084-AE5C-FF20-D835-EEDCF2211451}" name="Contorl Panels">
+        <FILE id="K21y4y" name="Control_Panel.cpp" compile="1" resource="0"
+              file="Source/Control_Panel.cpp"/>
+        <FILE id="YJcCHM" name="Control_Panel.h" compile="0" resource="0" file="Source/Control_Panel.h"/>
+        <FILE id="WTkmzr" name="VBAP_Control_Subpanel.cpp" compile="1" resource="0"
+              file="Source/VBAP_Control_Subpanel.cpp"/>
+        <FILE id="zCSUt0" name="VBAP_Control_Subpanel.h" compile="0" resource="0"
+              file="Source/VBAP_Control_Subpanel.h"/>
+        <FILE id="TwW7EV" name="MDAP_Control_Subpanel.cpp" compile="1" resource="0"
+              file="Source/MDAP_Control_Subpanel.cpp"/>
+        <FILE id="zPdbTR" name="MDAP_Control_Subpanel.h" compile="0" resource="0"
+              file="Source/MDAP_Control_Subpanel.h"/>
+        <FILE id="sBLK5W" name="DBAP_Control_Subpanel.cpp" compile="1" resource="0"
+              file="Source/DBAP_Control_Subpanel.cpp"/>
+        <FILE id="YHxmm2" name="DBAP_Control_Subpanel.h" compile="0" resource="0"
+              file="Source/DBAP_Control_Subpanel.h"/>
+      </GROUP>
+      <GROUP id="{40E4B865-E44C-407A-FCAA-2A7E1D2A4CFC}" name="Control Components">
+        <FILE id="MGd37c" name="Input_Label.cpp" compile="1" resource="0" file="Source/Input_Label.cpp"/>
+        <FILE id="yBCSM6" name="Input_Label.h" compile="0" resource="0" file="Source/Input_Label.h"/>
+      </GROUP>
+      <GROUP id="{3791AED4-31FC-5B0F-5BC4-644974EB2C96}" name="View Panels">
+        <FILE id="dw1LEl" name="View_Panel.cpp" compile="1" resource="0" file="Source/View_Panel.cpp"/>
+        <FILE id="Tq0rxJ" name="View_Panel.h" compile="0" resource="0" file="Source/View_Panel.h"/>
+        <FILE id="Aa4aHi" name="2D_View_Subpanel.cpp" compile="1" resource="0"
+              file="Source/2D_View_Subpanel.cpp"/>
+        <FILE id="kffWpx" name="2D_View_Subpanel.h" compile="0" resource="0"
+              file="Source/2D_View_Subpanel.h"/>
+      </GROUP>
       <GROUP id="{F12156CE-6411-8023-621F-6C8E12D8E596}" name="View Components">
         <FILE id="b3FaYv" name="View_Component_Base.cpp" compile="1" resource="0"
               file="Source/View_Component_Base.cpp"/>
@@ -39,27 +68,6 @@
       </GROUP>
       <FILE id="igngQG" name="Panel_Base.cpp" compile="1" resource="0" file="Source/Panel_Base.cpp"/>
       <FILE id="kvGYgW" name="Panel_Base.h" compile="0" resource="0" file="Source/Panel_Base.h"/>
-      <FILE id="dw1LEl" name="View_Panel.cpp" compile="1" resource="0" file="Source/View_Panel.cpp"/>
-      <FILE id="Tq0rxJ" name="View_Panel.h" compile="0" resource="0" file="Source/View_Panel.h"/>
-      <FILE id="Aa4aHi" name="2D_View_Subpanel.cpp" compile="1" resource="0"
-            file="Source/2D_View_Subpanel.cpp"/>
-      <FILE id="kffWpx" name="2D_View_Subpanel.h" compile="0" resource="0"
-            file="Source/2D_View_Subpanel.h"/>
-      <FILE id="K21y4y" name="Control_Panel.cpp" compile="1" resource="0"
-            file="Source/Control_Panel.cpp"/>
-      <FILE id="YJcCHM" name="Control_Panel.h" compile="0" resource="0" file="Source/Control_Panel.h"/>
-      <FILE id="WTkmzr" name="VBAP_Control_Subpanel.cpp" compile="1" resource="0"
-            file="Source/VBAP_Control_Subpanel.cpp"/>
-      <FILE id="zCSUt0" name="VBAP_Control_Subpanel.h" compile="0" resource="0"
-            file="Source/VBAP_Control_Subpanel.h"/>
-      <FILE id="TwW7EV" name="MDAP_Control_Subpanel.cpp" compile="1" resource="0"
-            file="Source/MDAP_Control_Subpanel.cpp"/>
-      <FILE id="zPdbTR" name="MDAP_Control_Subpanel.h" compile="0" resource="0"
-            file="Source/MDAP_Control_Subpanel.h"/>
-      <FILE id="sBLK5W" name="DBAP_Control_Subpanel.cpp" compile="1" resource="0"
-            file="Source/DBAP_Control_Subpanel.cpp"/>
-      <FILE id="YHxmm2" name="DBAP_Control_Subpanel.h" compile="0" resource="0"
-            file="Source/DBAP_Control_Subpanel.h"/>
     </GROUP>
     <GROUP id="{71403483-A7BC-F008-93AF-5C8BFC2F2EDB}" name="Other">
       <FILE id="s3bVOp" name="Audio_Helper.h" compile="0" resource="0" file="Source/Audio_Helper.h"/>

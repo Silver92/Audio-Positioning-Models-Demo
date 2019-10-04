@@ -20,7 +20,7 @@ VBAP::~VBAP()
     
 }
 
-std::vector<float> VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
+std::vector<float> VBAP::calVBAP(const std::vector<std::shared_ptr<Label>>& inPos)
 {
     std::vector<float> ampVectors;
     float x0 = inPos[0]->getText().getFloatValue();
@@ -40,8 +40,8 @@ std::vector<float> VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
     auto vSourceY = ampVectors[ampVectors.size()-1];
     decltype(vSourceX) maxDotProduct = 0;
     decltype(vSourceX) maxDotProduct2 = 0;
-    int index1 = 0;
-    int index2 = 0;
+    int index1 = -10;
+    int index2 = -10;
     for (int i = 0; i < ampVectors.size() - 3; i += 2) {
         decltype(vSourceX) dotProduct = ampVectors[i] * vSourceX +
         ampVectors[i+1] * vSourceY;

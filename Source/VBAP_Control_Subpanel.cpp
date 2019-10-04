@@ -86,7 +86,7 @@ void VBAPSubpanel::setText(Label& label, int fontSize, int xPos, int yPos, int w
 
 void VBAPSubpanel::setInput(int fontSize, int xPos, int yPos, int width)
 {
-    std::shared_ptr<Label> input (new Label());
+    std::shared_ptr<InputLabel> input (new InputLabel());
     setText(*input, fontSize, xPos, yPos, width);
     input->setEditable(true);
     input->setColour(Label::backgroundColourId, Colours::whitesmoke.withBrightness(0.9));

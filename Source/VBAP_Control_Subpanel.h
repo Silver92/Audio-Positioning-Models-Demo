@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Panel_Base.h"
+#include "Input_Label.h"
 
 class VBAPSubpanel
 :   public PanelBase
@@ -25,7 +26,7 @@ public:
     std::vector<float> mGainVals;
     
 private:
-    
+
     void paint (Graphics& g) override;
     void resized() override;
     void setText(Label& label, int fontSize, int xPos, int yPos, int width, String text = "");

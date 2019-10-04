@@ -19,7 +19,7 @@ public:
     ModelManager();
     virtual ~ModelManager();
     
-    virtual std::vector<float> calVBAP(std::vector<std::shared_ptr<Label>>& inPos);
+    virtual std::vector<float> calVBAP(const std::vector<std::shared_ptr<Label>>& inPos) = 0;
     
 private:
 };
