@@ -13,6 +13,7 @@
 #include "View_Panel.h"
 #include "Model_Manager.h"
 #include "VBAP.h"
+#include "PresetManager.h"
 
 //==============================================================================
 /*
@@ -35,5 +36,6 @@ private:
     std::unique_ptr<ControlPanel> mControlPanel;
     std::unique_ptr<ViewPanel> mViewPanel;
     std::unique_ptr<ModelManager> mModelManager;
+    std::unique_ptr<PresetManager> mPresetManager;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

@@ -138,6 +138,7 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\PresetManager.cpp"/>
     <ClCompile Include="..\..\Source\Model_Manager.cpp"/>
     <ClCompile Include="..\..\Source\VBAP.cpp"/>
     <ClCompile Include="..\..\Source\MDAP.cpp"/>
@@ -1873,6 +1874,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PresetManager.h"/>
     <ClInclude Include="..\..\Source\Model_Manager.h"/>
     <ClInclude Include="..\..\Source\VBAP.h"/>
     <ClInclude Include="..\..\Source\MDAP.h"/>

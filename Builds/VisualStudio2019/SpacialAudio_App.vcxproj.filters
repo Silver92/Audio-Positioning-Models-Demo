@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="SpacialAudio\Managers">
+      <UniqueIdentifier>{8EC739FD-A60C-AC94-4302-169C472FB233}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SpacialAudio\Models">
       <UniqueIdentifier>{B6D52E8F-1190-6365-A0AC-09F30379F16C}</UniqueIdentifier>
     </Filter>
@@ -409,6 +412,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\PresetManager.cpp">
+      <Filter>SpacialAudio\Managers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Model_Manager.cpp">
       <Filter>SpacialAudio\Models</Filter>
     </ClCompile>
@@ -2304,6 +2310,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\PresetManager.h">
+      <Filter>SpacialAudio\Managers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Model_Manager.h">
       <Filter>SpacialAudio\Models</Filter>
     </ClInclude>

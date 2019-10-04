@@ -2,6 +2,11 @@
 
 <JUCERPROJECT id="HQlnxv" name="SpacialAudio" projectType="guiapp" jucerVersion="5.4.4">
   <MAINGROUP id="awtWAR" name="SpacialAudio">
+    <GROUP id="{5E20E228-DF1B-65DF-25F9-5119FCE21E2A}" name="Managers">
+      <FILE id="tCB5SY" name="PresetManager.cpp" compile="1" resource="0"
+            file="Source/PresetManager.cpp"/>
+      <FILE id="p00LWW" name="PresetManager.h" compile="0" resource="0" file="Source/PresetManager.h"/>
+    </GROUP>
     <GROUP id="{450A2060-CC84-50DE-746F-45DE4BE3CD6D}" name="Models">
       <FILE id="tpJ6ll" name="Model_Manager.cpp" compile="1" resource="0"
             file="Source/Model_Manager.cpp"/>

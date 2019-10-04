@@ -28,14 +28,13 @@ MainComponent::MainComponent()
         
     };
     
+    mPresetManager.reset(new PresetManager());
+    mPresetManager->loadPreviousPreset();
 }
 
 MainComponent::~MainComponent()
 {
-//    File OutFile("TestOutput.txt");
-//    FileOutputStream OutStream(OutFile);
-//    if (OutStream.openedOk())
-//        OutStream.writeFloat(1.0f);
+    
 }
 
 //==============================================================================

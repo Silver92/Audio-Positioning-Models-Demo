@@ -53,6 +53,10 @@
 			isa = PBXBuildFile;
 			fileRef = 70B3539A6DC16298FBA28076;
 		};
+		20578D555645611D329E7E60 = {
+			isa = PBXBuildFile;
+			fileRef = A6D500E578921E95D77D0549;
+		};
 		8AFE77F76BE864F652D1C622 = {
 			isa = PBXBuildFile;
 			fileRef = FEC78510E659D74260E9A460;
@@ -540,6 +544,13 @@
 			path = "/Users/silver/Documents/JUCE/modules/juce_data_structures";
 			sourceTree = "<absolute>";
 		};
+		A6D500E578921E95D77D0549 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PresetManager.cpp;
+			path = ../../Source/PresetManager.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		A829010661A821A69E6E0438 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -559,6 +570,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = "View_Panel.cpp";
 			path = "../../Source/View_Panel.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
+		ADCE49159490523379BF2256 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PresetManager.h;
+			path = ../../Source/PresetManager.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		B42CC3D6B87C3CF052FF8698 = {
@@ -694,6 +712,15 @@
 			path = "../../Source/Model_Manager.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		CBE966E9C0FE45FED8EA1568 = {
+			isa = PBXGroup;
+			children = (
+				A6D500E578921E95D77D0549,
+				ADCE49159490523379BF2256,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		DC9851E2E7C9DB4595174B3D = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +796,7 @@
 		1AEC4652509D735AFAF5D319 = {
 			isa = PBXGroup;
 			children = (
+				CBE966E9C0FE45FED8EA1568,
 				DC9851E2E7C9DB4595174B3D,
 				622050EB7AFDCF11E1A65652,
 				06BD4EDD2F590FAF4745AF85,
@@ -1074,6 +1102,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20578D555645611D329E7E60,
 				8AFE77F76BE864F652D1C622,
 				449AE937192E2BE15D6E76F0,
 				65881BF81B2709105C8289BF,
