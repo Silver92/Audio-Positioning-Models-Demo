@@ -57,6 +57,8 @@ std::vector<float> VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
         }
     }
     
+    std::cout << index1 << " " << index2 << std::endl;
+    
     std::vector<float> gainVectors;
     auto denorm = (ampVectors[index1] * ampVectors[index2+1] -
                    ampVectors[index2] * ampVectors[index1+1]);
@@ -64,6 +66,8 @@ std::vector<float> VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
                   vSourceY * ampVectors[index2]) / denorm;
     auto gain2 = (vSourceY * ampVectors[index1] -
                   vSourceX * ampVectors[index1+1]) / denorm;
+    
+    std::cout << gain1 << " " << gain2 << std::endl;
     for (int i = 0; i < ampVectors.size() - 3; i +=2) {
         if (i == index1) {
             gainVectors.push_back(Decibels::gainToDecibels(denormalize(gain1)));
@@ -72,6 +76,10 @@ std::vector<float> VBAP::calVBAP(std::vector<std::shared_ptr<Label>>& inPos)
         } else {
             gainVectors.push_back(Decibels::gainToDecibels(0.f));
         }
+    }
+    
+    for (int i = 0; i < gainVectors.size(); i++) {
+        std::cout << "gain: " << i << ": " << gainVectors[i] << std::endl;
     }
     
     return gainVectors;

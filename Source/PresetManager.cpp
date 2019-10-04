@@ -59,7 +59,6 @@ void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>> mPos)
     }
     
     posList.writeTo(presetFile);
-    myCurrentPreset = presetFile;
 }
 
 void PresetManager::loadPreviousPreset(std::vector<std::shared_ptr<Label>> mPos)

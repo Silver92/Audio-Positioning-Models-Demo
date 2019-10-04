@@ -22,6 +22,7 @@ public:
     
     TextButton runButton;
     std::vector<std::shared_ptr<Label>> mPos;
+    std::vector<float> mGainVals;
     
 private:
     

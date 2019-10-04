@@ -23,13 +23,20 @@ MainComponent::MainComponent()
     mModelManager.reset(new VBAP());
     
     mControlPanel->mVBAPPanel->runButton.onClick = [this]
-    {mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos,
-                                          mModelManager->calVBAP(mControlPanel->mVBAPPanel->mPos));
+    {
+        mControlPanel->mVBAPPanel->mGainVals =
+        mModelManager->calVBAP(mControlPanel->mVBAPPanel->mPos);
+        mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos,
+                                             mControlPanel->mVBAPPanel->mGainVals);
         
     };
     
     mPresetManager.reset(new PresetManager());
     mPresetManager->loadPreviousPreset(mControlPanel->mVBAPPanel->mPos);
+    mControlPanel->mVBAPPanel->mGainVals =
+    mModelManager->calVBAP(mControlPanel->mVBAPPanel->mPos);
+    mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos,
+                                         mControlPanel->mVBAPPanel->mGainVals);
 }
 
 MainComponent::~MainComponent()
