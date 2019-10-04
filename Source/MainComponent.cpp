@@ -29,12 +29,12 @@ MainComponent::MainComponent()
     };
     
     mPresetManager.reset(new PresetManager());
-    mPresetManager->loadPreviousPreset();
+    mPresetManager->loadPreviousPreset(mControlPanel->mVBAPPanel->mPos);
 }
 
 MainComponent::~MainComponent()
 {
-    
+    mPresetManager->saveCurrentPreset(mControlPanel->mVBAPPanel->mPos);
 }
 
 //==============================================================================

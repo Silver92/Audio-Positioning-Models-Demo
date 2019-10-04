@@ -22,6 +22,7 @@ public:
     
     TextButton runButton;
     std::vector<std::shared_ptr<Label>> mPos;
+    
 private:
     
     void paint (Graphics& g) override;

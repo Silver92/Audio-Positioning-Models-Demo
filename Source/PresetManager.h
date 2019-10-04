@@ -17,8 +17,8 @@ class PresetManager
 public:
     PresetManager();
     ~PresetManager();
-    void saveCurrentPreset();
-    void loadPreviousPreset();
+    void saveCurrentPreset(std::vector<std::shared_ptr<Label>> mPos);
+    void loadPreviousPreset(std::vector<std::shared_ptr<Label>> mPos);
 private:
     String mPresetDirectory;
     File myCurrentPreset;

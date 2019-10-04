@@ -33,20 +33,20 @@ PresetManager::~PresetManager()
     
 }
 
-void PresetManager::saveCurrentPreset()
+void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>> mPos)
 {
     // create an outer node
     XmlElement posList ("StateInfo");
     
     // create and add children node
     XmlElement* pos = new XmlElement("preset");
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < mPos.size() - 1; i += 2)
     {
         // create an inner element..
         String s1 = "x" + String(i);
         String s2 = "y" + String(i);
-        pos->setAttribute (s1, 100);
-        pos->setAttribute (s2, 200);
+        pos->setAttribute (s1, mPos[i]->getText());
+        pos->setAttribute (s2, mPos[i+1]->getText());
     }
     posList.addChildElement(pos);
     
@@ -62,7 +62,7 @@ void PresetManager::saveCurrentPreset()
     myCurrentPreset = presetFile;
 }
 
-void PresetManager::loadPreviousPreset()
+void PresetManager::loadPreviousPreset(std::vector<std::shared_ptr<Label>> mPos)
 {
     for (DirectoryIterator di (File(mPresetDirectory),
                                false,
@@ -83,8 +83,16 @@ void PresetManager::loadPreviousPreset()
             if (mainElement->getTagName() == "StateInfo") {
                 forEachXmlChildElement (*mainElement, e) {
                     if (e->hasTagName("preset")) {
-                        std::cout << e->getIntAttribute("x0") << std::endl;
-                        std::cout << e->getIntAttribute("y0") << std::endl;
+//                        std::cout << e->getStringAttribute("x0") << std::endl;
+//                        std::cout << e->getStringAttribute("y0") << std::endl;
+                        for (int i = 0; i < mPos.size() - 1; i += 2)
+                        {
+                            // create an inner element..
+                            String s1 = "x" + String(i);
+                            String s2 = "y" + String(i);
+                            mPos[i]->setText(e->getStringAttribute(s1), dontSendNotification);
+                            mPos[i+1]->setText(e->getStringAttribute(s2), dontSendNotification);
+                        }
                     }
                 }
             }
