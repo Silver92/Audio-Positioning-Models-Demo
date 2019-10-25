@@ -19,7 +19,8 @@ public:
     ModelManager();
     virtual ~ModelManager();
     
-    virtual std::vector<float> calVBAP(const std::vector<std::shared_ptr<Label>>& inPos) = 0;
+    virtual void calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
+                           std::vector<float>& inGainVectors) = 0;
     
 private:
 };

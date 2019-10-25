@@ -22,26 +22,29 @@ MainComponent::MainComponent()
     
     mModelManager.reset(new VBAP());
     
-    mControlPanel->mVBAPPanel->runButton.onClick = [this]
+    mControlPanel->mVBAPPanel->getRunButton().onClick = [this]
     {
-        mControlPanel->mVBAPPanel->mGainVals =
-        mModelManager->calVBAP(mControlPanel->mVBAPPanel->mPos);
-        mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos,
-                                             mControlPanel->mVBAPPanel->mGainVals);
+        mModelManager->calculate(mControlPanel->mVBAPPanel->getPos(),
+                                 mControlPanel->mVBAPPanel->getGainVals());
+        mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->getPos(),
+                                             mControlPanel->mVBAPPanel->getGainVals());
         
     };
     
     mPresetManager.reset(new PresetManager());
-    mPresetManager->loadPreviousPreset(mControlPanel->mVBAPPanel->mPos);
-    mControlPanel->mVBAPPanel->mGainVals =
-    mModelManager->calVBAP(mControlPanel->mVBAPPanel->mPos);
-    mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->mPos,
-                                         mControlPanel->mVBAPPanel->mGainVals);
+    mPresetManager->loadPreviousPreset(mControlPanel->mVBAPPanel->getLabels());
+    
+    mControlPanel->mVBAPPanel->calPos();
+    
+    mModelManager->calculate(mControlPanel->mVBAPPanel->getPos(),
+                             mControlPanel->mVBAPPanel->getGainVals());
+    mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->getPos(),
+                                         mControlPanel->mVBAPPanel->getGainVals());
 }
 
 MainComponent::~MainComponent()
 {
-    mPresetManager->saveCurrentPreset(mControlPanel->mVBAPPanel->mPos);
+    mPresetManager->saveCurrentPreset(mControlPanel->mVBAPPanel->getLabels());
 }
 
 //==============================================================================

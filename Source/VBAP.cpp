@@ -20,31 +20,33 @@ VBAP::~VBAP()
     
 }
 
-std::vector<float> VBAP::calVBAP(const std::vector<std::shared_ptr<Label>>& inPos)
+void VBAP::calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
+                     std::vector<float>& inGainVectors)
 {
-    std::vector<float> ampVectors;
-    float x0 = inPos[0]->getText().getFloatValue();
-    float y0 = inPos[1]->getText().getFloatValue();
-    for (int i = 2; i < inPos.size()-1; i += 2) {
+    std::vector<Point<float>> ampVectors;
+    float x0 = inPos[0]->getX();
+    float y0 = inPos[0]->getY();
+    
+    for (int i = 1; i < inPos.size(); i++) {
         
-        auto x = inPos[i]->getText().getFloatValue() - x0;
-        auto y = inPos[i+1]->getText().getFloatValue() - y0;
+        auto x = inPos[i]->getX() - x0;
+        auto y = inPos[i]->getY() - y0;
         
         auto length = sqrt(square(x) + square(y));
-        ampVectors.push_back(x / length);
-        ampVectors.push_back(y / length);
+        
+        ampVectors.push_back(Point<float>(x/length, y/length));
         
     }
     
-    auto vSourceX = ampVectors[ampVectors.size()-2];
-    auto vSourceY = ampVectors[ampVectors.size()-1];
-    decltype(vSourceX) maxDotProduct = 0;
-    decltype(vSourceX) maxDotProduct2 = 0;
-    int index1 = -10;
-    int index2 = -10;
-    for (int i = 0; i < ampVectors.size() - 3; i += 2) {
-        decltype(vSourceX) dotProduct = ampVectors[i] * vSourceX +
-        ampVectors[i+1] * vSourceY;
+    auto vSourceX = ampVectors[ampVectors.size()-1].getX();
+    auto vSourceY = ampVectors[ampVectors.size()-1].getY();
+    decltype(vSourceX) maxDotProduct = -10;
+    decltype(vSourceX) maxDotProduct2 = -10;
+    int index1 = 0;
+    int index2 = 0;
+    for (int i = 0; i < ampVectors.size()-1; i++) {
+        decltype(vSourceX) dotProduct = ampVectors[i].getX() * vSourceX +
+                                        ampVectors[i].getY() * vSourceY;
         
         if (dotProduct > maxDotProduct) {
             index2 = index1;
@@ -59,28 +61,27 @@ std::vector<float> VBAP::calVBAP(const std::vector<std::shared_ptr<Label>>& inPo
     
     std::cout << index1 << " " << index2 << std::endl;
     
-    std::vector<float> gainVectors;
-    auto denorm = (ampVectors[index1] * ampVectors[index2+1] -
-                   ampVectors[index2] * ampVectors[index1+1]);
-    auto gain1 = (vSourceX * ampVectors[index2+1] -
-                  vSourceY * ampVectors[index2]) / denorm;
-    auto gain2 = (vSourceY * ampVectors[index1] -
-                  vSourceX * ampVectors[index1+1]) / denorm;
+    auto denorm = (ampVectors[index1].getX() * ampVectors[index2].getY() -
+                   ampVectors[index2].getX() * ampVectors[index1].getY());
+    auto gain1 = (vSourceX * ampVectors[index2].getY() -
+                  vSourceY * ampVectors[index2].getX()) / denorm;
+    auto gain2 = (vSourceY * ampVectors[index1].getX() -
+                  vSourceX * ampVectors[index1].getY()) / denorm;
     
     std::cout << gain1 << " " << gain2 << std::endl;
-    for (int i = 0; i < ampVectors.size() - 3; i +=2) {
+    
+    inGainVectors.clear();
+    for (int i = 0; i < ampVectors.size()-1; i++) {
         if (i == index1) {
-            gainVectors.push_back(Decibels::gainToDecibels(denormalize(gain1)));
+            inGainVectors.push_back(Decibels::gainToDecibels(denormalize(gain1)));
         } else if (i == index2) {
-            gainVectors.push_back(Decibels::gainToDecibels(denormalize(gain2)));
+            inGainVectors.push_back(Decibels::gainToDecibels(denormalize(gain2)));
         } else {
-            gainVectors.push_back(Decibels::gainToDecibels(0.f));
+            inGainVectors.push_back(Decibels::gainToDecibels(0.f));
         }
     }
     
-    for (int i = 0; i < gainVectors.size(); i++) {
-        std::cout << "gain: " << i << ": " << gainVectors[i] << std::endl;
+    for (int i = 0; i < inGainVectors.size(); i++) {
+        std::cout << "gain: " << i << ": " << inGainVectors[i] << std::endl;
     }
-    
-    return gainVectors;
 }

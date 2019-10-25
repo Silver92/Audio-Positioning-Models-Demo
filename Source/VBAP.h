@@ -18,5 +18,6 @@ public:
     VBAP();
     ~VBAP();
     
-    std::vector<float> calVBAP(const std::vector<std::shared_ptr<Label>>& inPos) override;
+    void calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
+                   std::vector<float>& inGainVectors) override;
 };

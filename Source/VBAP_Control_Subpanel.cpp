@@ -17,23 +17,23 @@ VBAPSubpanel::VBAPSubpanel()
     int yPos = 35;
     setText(listenerPosTitle, 20, 0, yPos, getWidth(), "Listener Position");
     yPos += 20;
-    setPosInput(20, yPos);
+    setInput(20, yPos);
     
     yPos += 25;
     setText(speakerPosTitle, 20, 0, yPos, getWidth(), "Speakers Position");
     yPos += 25;
-    setPosInput(20, yPos);
+    setInput(20, yPos);
     yPos += 25;
-    setPosInput(20, yPos);
+    setInput(20, yPos);
     yPos += 25;
-    setPosInput(20, yPos);
+    setInput(20, yPos);
     yPos += 25;
-    setPosInput(20, yPos);
+    setInput(20, yPos);
     
     yPos += 25;
     setText(sourcePosTitle, 20, 0, yPos, getWidth(), "Sound Source Position");
     yPos += 20;
-    setPosInput(20, yPos);
+    setInput(20, yPos);
     
     runButton.setButtonText("Run");
     runButton.setColour(TextButton::buttonColourId, Colours::whitesmoke.darker());
@@ -74,7 +74,12 @@ void VBAPSubpanel::resized()
     runButton.setBounds(area);
 }
 
-void VBAPSubpanel::setText(Label& label, int fontSize, int xPos, int yPos, int width, String text)
+void VBAPSubpanel::setText(Label& label,
+                           int fontSize,
+                           int xPos,
+                           int yPos,
+                           int width,
+                           String text)
 {
     label.setFont(fontSize);
     label.setColour(Label::textColourId, Colours::black);
@@ -84,25 +89,73 @@ void VBAPSubpanel::setText(Label& label, int fontSize, int xPos, int yPos, int w
     addAndMakeVisible(label);
 }
 
-void VBAPSubpanel::setInput(int fontSize, int xPos, int yPos, int width)
+void VBAPSubpanel::setInputText(int fontSize,
+                                int xPos,
+                                int yPos,
+                                int width)
 {
     std::shared_ptr<InputLabel> input (new InputLabel());
     setText(*input, fontSize, xPos, yPos, width);
     input->setEditable(true);
-    input->setColour(Label::backgroundColourId, Colours::whitesmoke.withBrightness(0.9));
-    input->setColour(Label::textWhenEditingColourId, Colours::black.brighter());
-    mPos.push_back(input);
+    input->setColour(Label::backgroundColourId,
+                     Colours::whitesmoke.withBrightness(0.9));
+    input->setColour(Label::textWhenEditingColourId,
+                     Colours::black.brighter());
+    input->onTextChange = [this]{};
+    mPosLabel.push_back(input);
 }
 
-void VBAPSubpanel::setPosInput(int fontSize, int yPos)
+void VBAPSubpanel::setInput(int fontSize, int yPos)
 {
     std::shared_ptr<Label> textX (new Label());
     setText(*textX, fontSize, 3, yPos, getWidth()/4, "X:");
     mXYLabel.push_back(textX);
+    
     std::shared_ptr<Label> textY (new Label());
     setText(*textY, fontSize, getWidth()/2 - 10, yPos, getWidth()/4, "Y:");
     mXYLabel.push_back(textY);
     
-    setInput(fontSize, getWidth()/4, yPos, getWidth()/4);
-    setInput(fontSize, getWidth()/4*3 - 20, yPos, getWidth()/4);
+    setInputText(fontSize, getWidth()/4, yPos, getWidth()/4);
+    setInputText(fontSize, getWidth()/4*3 - 20, yPos, getWidth()/4);
+}
+
+
+
+TextButton& VBAPSubpanel::getRunButton()
+{
+    return runButton;
+}
+
+std::vector<std::shared_ptr<Point<float>>> VBAPSubpanel::getPos()
+{
+    return mPos;
+}
+
+std::vector<float>& VBAPSubpanel::getGainVals()
+{
+    return mGainVals;
+}
+
+std::vector<std::shared_ptr<Label>> VBAPSubpanel::getLabels()
+{
+    return mPosLabel;
+}
+
+void VBAPSubpanel::calPos()
+{
+    for (int i = 0; i < mPosLabel.size() - 1; i += 2)
+    {
+        std::shared_ptr<Point<float>> point(new Point<float>
+                                            (mPosLabel[i]->getText()
+                                             .getFloatValue(),
+                                             mPosLabel[i+1]->getText()
+                                             .getFloatValue()));
+        mPosLabel[i]->onTextChange = [this, i, point]{point->
+                                    setX(mPosLabel[i]->getText()
+                                    .getFloatValue());};
+        mPosLabel[i+1]->onTextChange = [this, i, point]{point->
+                                    setY(mPosLabel[i+1]->getText()
+                                    .getFloatValue());};
+        mPos.push_back(point);
+    }
 }

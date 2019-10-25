@@ -21,22 +21,29 @@ public:
     VBAPSubpanel();
     ~VBAPSubpanel();
     
-    TextButton runButton;
-    std::vector<std::shared_ptr<Label>> mPos;
-    std::vector<float> mGainVals;
+    TextButton& getRunButton();
+    std::vector<std::shared_ptr<Point<float>>> getPos();
+    std::vector<float>& getGainVals();
+    std::vector<std::shared_ptr<Label>> getLabels();
+    void calPos();
     
 private:
 
     void paint (Graphics& g) override;
     void resized() override;
     void setText(Label& label, int fontSize, int xPos, int yPos, int width, String text = "");
-    void setInput(int fontSize, int xPos, int yPos, int width);
-    void setPosInput(int fontSize, int yPos);
+    void setInputText(int fontSize, int xPos, int yPos, int width);
+    void setInput(int fontSize, int yPos);
     void drawLine(juce::Graphics &g, int lineDistance);
     
     Label listenerPosTitle;
     Label speakerPosTitle;
     Label sourcePosTitle;
     
+    TextButton runButton;
+    
     std::vector<std::shared_ptr<Label>> mXYLabel;
+    std::vector<std::shared_ptr<Label>> mPosLabel;
+    std::vector<std::shared_ptr<Point<float>>> mPos;
+    std::vector<float> mGainVals;
 };

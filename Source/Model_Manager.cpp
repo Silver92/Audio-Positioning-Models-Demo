@@ -19,10 +19,3 @@ ModelManager::~ModelManager()
 {
     
 }
-
-std::vector<float> ModelManager::calVBAP(const std::vector<std::shared_ptr<Label>>& inPos)
-{
-    std::cout << "Warning: not inplementing the VBAP model" << std::endl;
-    std::vector<float> vec;
-    return vec;
-}

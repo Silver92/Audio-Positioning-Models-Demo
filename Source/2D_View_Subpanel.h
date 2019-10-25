@@ -24,7 +24,7 @@ public:
     ~TwoDSubpanel();
     
     void paint(Graphics& g) override;
-    void drawComponents(const std::vector<std::shared_ptr<Label>>& inPos,
+    void drawComponents(const std::vector<std::shared_ptr<Point<float>>>& inPos,
                         const std::vector<float>& dBFSs);
     
 private:

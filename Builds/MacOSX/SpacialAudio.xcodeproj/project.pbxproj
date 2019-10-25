@@ -157,6 +157,10 @@
 			isa = PBXBuildFile;
 			fileRef = 41C96BF83DC695017F39DD6D;
 		};
+		8A1C2B02FA0D46462177C211 = {
+			isa = PBXBuildFile;
+			fileRef = 4B11E8AA03D31677595AE9A7;
+		};
 		E29CB0D7903DD91BBF18D58E = {
 			isa = PBXBuildFile;
 			fileRef = 532004406BDEF24128E5AF1D;
@@ -190,6 +194,13 @@
 			name = "Audio_Helper.h";
 			path = "../../Source/Audio_Helper.h";
 			sourceTree = "SOURCE_ROOT";
+		};
+		0895257D9656905E5ABA6FED = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_dsp";
+			path = "/Users/silver/Documents/JUCE/modules/juce_dsp";
+			sourceTree = "<absolute>";
 		};
 		0BF317856626A671BBBD80FB = {
 			isa = PBXFileReference;
@@ -372,6 +383,13 @@
 			name = CoreAudio.framework;
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
+		};
+		4B11E8AA03D31677595AE9A7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_dsp.mm";
+			path = "../../JuceLibraryCode/include_juce_dsp.mm";
+			sourceTree = "SOURCE_ROOT";
 		};
 		51231CCF1C97893E4BF6A4E9 = {
 			isa = PBXFileReference;
@@ -859,6 +877,7 @@
 				F34410FB3D2894F697F7B8F6,
 				3C2882FA5C591AC7887838FE,
 				A3904024E595B20B514C5774,
+				0895257D9656905E5ABA6FED,
 				DFBCEDFB12D36925C1B4341C,
 				5514000A7F63539F0E48713F,
 				1AB093D8367B5080E5AF9A2C,
@@ -879,6 +898,7 @@
 				635A2A230A9843B08BAA328D,
 				C54D117F606C7BDF320B1F8A,
 				41C96BF83DC695017F39DD6D,
+				4B11E8AA03D31677595AE9A7,
 				532004406BDEF24128E5AF1D,
 				765687927A02C473F3DE0388,
 				97A05529231C74B98981667B,
@@ -1172,6 +1192,7 @@
 				0E4FA5E401E9C2A123DE2D3F,
 				98E78B3535CAD588B4471EDC,
 				7D73C8B5826B04E3B20B5693,
+				8A1C2B02FA0D46462177C211,
 				E29CB0D7903DD91BBF18D58E,
 				C6E6FD321EA3FA9D9F3952C3,
 				12134814054DA2F45E9CE74D,

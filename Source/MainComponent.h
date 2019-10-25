@@ -13,6 +13,7 @@
 #include "View_Panel.h"
 #include "Model_Manager.h"
 #include "VBAP.h"
+#include "MDAP.h"
 #include "PresetManager.h"
 
 //==============================================================================
