@@ -9,3 +9,15 @@
 */
 
 #pragma once
+
+#include "Panel_Base.h"
+#include "Input_Label.h"
+#include "Control_Panel.h"
+
+class MDAPSubpanel
+:   public ControlPanel
+{
+public:
+private:
+    void paint (Graphics& g) override;
+};

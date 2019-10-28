@@ -9,3 +9,10 @@
 */
 
 #include "MDAP_Control_Subpanel.h"
+
+void MDAPSubpanel::paint(Graphics& g)
+{
+    g.setFont(25);
+    g.setColour(Colours::black);
+    g.drawText("MDAP Model", getLocalBounds(), Justification::centredTop);
+}
