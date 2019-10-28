@@ -11,17 +11,36 @@
 #pragma once
 
 #include "Panel_Base.h"
-#include "VBAP_Control_Subpanel.h"
 
+enum PanelModel
+{
+    PanelModel_VBAP,
+    PanelModel_MDAP,
+    PanelModel_DBAP,
+    PanelModel_TotalNumModels
+};
 
 class ControlPanel
-: public PanelBase
+:   public PanelBase,
+    public ComboBox::Listener
 {
 public:
     ControlPanel();
     ~ControlPanel();
     
-    std::unique_ptr<VBAPSubpanel> mVBAPPanel;
+    void setModel(PanelModel inModel);
+    void comboBoxChanged(ComboBox* comboBoxThatHasChanged) override;
+    void getModel();
+    
+    virtual TextButton& getRunButton() = 0;
+    virtual std::vector<std::shared_ptr<Point<float>>> getPos() = 0;
+    virtual std::vector<float>& getGainVals() = 0;
+    virtual std::vector<std::shared_ptr<Label>> getLabels() = 0;
+    virtual void calPos() = 0;
+    
 private:
+    
+    std::unique_ptr<ComboBox> mComboBox;
+    PanelModel mModelEnum;
     
 };

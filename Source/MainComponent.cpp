@@ -13,7 +13,7 @@ MainComponent::MainComponent()
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
-    mControlPanel.reset(new ControlPanel());
+    mControlPanel.reset(new VBAPSubpanel());
     mControlPanel->setBounds(VIEW_PANEL_WIDTH, 0, getWidth(), getHeight());
     addAndMakeVisible(mControlPanel.get());
     
@@ -22,29 +22,29 @@ MainComponent::MainComponent()
     
     mModelManager.reset(new VBAP());
     
-    mControlPanel->mVBAPPanel->getRunButton().onClick = [this]
+    mControlPanel->getRunButton().onClick = [this]
     {
-        mModelManager->calculate(mControlPanel->mVBAPPanel->getPos(),
-                                 mControlPanel->mVBAPPanel->getGainVals());
-        mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->getPos(),
-                                             mControlPanel->mVBAPPanel->getGainVals());
+        mModelManager->calculate(mControlPanel->getPos(),
+                                 mControlPanel->getGainVals());
+        mViewPanel->m2DPanel->drawComponents(mControlPanel->getPos(),
+                                             mControlPanel->getGainVals());
         
     };
     
     mPresetManager.reset(new PresetManager());
-    mPresetManager->loadPreviousPreset(mControlPanel->mVBAPPanel->getLabels());
+    mPresetManager->loadPreviousPreset(mControlPanel->getLabels());
     
-    mControlPanel->mVBAPPanel->calPos();
+    mControlPanel->calPos();
     
-    mModelManager->calculate(mControlPanel->mVBAPPanel->getPos(),
-                             mControlPanel->mVBAPPanel->getGainVals());
-    mViewPanel->m2DPanel->drawComponents(mControlPanel->mVBAPPanel->getPos(),
-                                         mControlPanel->mVBAPPanel->getGainVals());
+    mModelManager->calculate(mControlPanel->getPos(),
+                             mControlPanel->getGainVals());
+    mViewPanel->m2DPanel->drawComponents(mControlPanel->getPos(),
+                                         mControlPanel->getGainVals());
 }
 
 MainComponent::~MainComponent()
 {
-    mPresetManager->saveCurrentPreset(mControlPanel->mVBAPPanel->getLabels());
+    mPresetManager->saveCurrentPreset(mControlPanel->getLabels());
 }
 
 //==============================================================================

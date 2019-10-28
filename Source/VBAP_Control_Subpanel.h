@@ -12,20 +12,22 @@
 
 #include "Panel_Base.h"
 #include "Input_Label.h"
+#include "Control_Panel.h"
 
 class VBAPSubpanel
-:   public PanelBase
+:   public ControlPanel
+    
 {
 public:
     
     VBAPSubpanel();
     ~VBAPSubpanel();
     
-    TextButton& getRunButton();
-    std::vector<std::shared_ptr<Point<float>>> getPos();
-    std::vector<float>& getGainVals();
-    std::vector<std::shared_ptr<Label>> getLabels();
-    void calPos();
+    TextButton& getRunButton() override;
+    std::vector<std::shared_ptr<Point<float>>> getPos() override;
+    std::vector<float>& getGainVals() override;
+    std::vector<std::shared_ptr<Label>> getLabels() override;
+    void calPos() override;
     
 private:
 

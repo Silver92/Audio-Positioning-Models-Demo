@@ -13,12 +13,34 @@
 ControlPanel::ControlPanel()
 {
     setSize (CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
+
     
-    mVBAPPanel.reset(new VBAPSubpanel());
-    addAndMakeVisible(mVBAPPanel.get());
+    mComboBox.reset(new ComboBox());
+    mComboBox->setBounds(0, 0, getWidth(), 30);
+    mComboBox->addItem("VBAP", 1);
+    mComboBox->addItem("MDAP", 2);
+    mComboBox->addItem("DBAP", 3);
+    mComboBox->setSelectedItemIndex(1);
+    addAndMakeVisible(mComboBox.get());
+    
 }
 
 ControlPanel::~ControlPanel()
+{
+    
+}
+
+void ControlPanel::setModel(PanelModel inModel)
+{
+    
+}
+
+void ControlPanel::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
+{
+    
+}
+
+void ControlPanel::getModel()
 {
     
 }

@@ -37,7 +37,6 @@ VBAPSubpanel::VBAPSubpanel()
     
     runButton.setButtonText("Run");
     runButton.setColour(TextButton::buttonColourId, Colours::whitesmoke.darker());
-    runButton.onClick = [this] {;};
     addAndMakeVisible(runButton);
 }
 
@@ -48,6 +47,11 @@ VBAPSubpanel::~VBAPSubpanel()
 
 void VBAPSubpanel::paint(Graphics& g)
 {
+    g.setColour(Colours::whitesmoke);
+    g.fillAll();
+    g.setColour(Colours::black);
+    g.drawRect(0, 0, CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT, 2);
+    
     g.setFont(25);
     g.setColour(Colours::black);
     g.drawText("VBAP Model", getLocalBounds(), Justification::centredTop);
@@ -70,7 +74,10 @@ void VBAPSubpanel::drawLine(juce::Graphics &g, int lineDistance)
 
 void VBAPSubpanel::resized()
 {
-    Rectangle<int> area (2, getBottom() - 45 - 2, getWidth() - 2, 45);
+    Rectangle<int> area (2,
+                         getBottom() - 45 - 2,
+                         CONTROL_PANEL_WIDTH - 2*2,
+                         45);
     runButton.setBounds(area);
 }
 

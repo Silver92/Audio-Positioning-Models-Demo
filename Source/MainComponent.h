@@ -10,6 +10,9 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Control_Panel.h"
+#include "VBAP_Control_Subpanel.h"
+#include "MDAP_Control_Subpanel.h"
+#include "DBAP_Control_Subpanel.h"
 #include "View_Panel.h"
 #include "Model_Manager.h"
 #include "VBAP.h"
