@@ -14,13 +14,13 @@ VBAPSubpanel::VBAPSubpanel()
 {
     setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
     
-    int yPos = 35;
-    setText(listenerPosTitle, 20, 0, yPos, getWidth(), "Listener Position");
+    int yPos = 0;
+    setText(listenerPosTitle, 20, 0, yPos, CONTROL_PANEL_WIDTH, "Listener Position");
     yPos += 20;
     setInput(20, yPos);
     
     yPos += 25;
-    setText(speakerPosTitle, 20, 0, yPos, getWidth(), "Speakers Position");
+    setText(speakerPosTitle, 20, 0, yPos, CONTROL_PANEL_WIDTH, "Speakers Position");
     yPos += 25;
     setInput(20, yPos);
     yPos += 25;
@@ -31,12 +31,16 @@ VBAPSubpanel::VBAPSubpanel()
     setInput(20, yPos);
     
     yPos += 25;
-    setText(sourcePosTitle, 20, 0, yPos, getWidth(), "Sound Source Position");
+    setText(sourcePosTitle, 20, 0, yPos, CONTROL_PANEL_WIDTH, "Sound Source Position");
     yPos += 20;
     setInput(20, yPos);
     
     runButton.setButtonText("Run");
     runButton.setColour(TextButton::buttonColourId, Colours::whitesmoke.darker());
+    runButton.setBounds(2,
+                         getBottom() - 45 - 2,
+                         CONTROL_PANEL_WIDTH - 2*2,
+                         45);
     addAndMakeVisible(runButton);
 }
 
@@ -51,15 +55,8 @@ void VBAPSubpanel::paint(Graphics& g)
     g.fillAll();
     g.setColour(Colours::black);
     g.drawRect(0, 0, CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT, 2);
-    
-    g.setFont(25);
-    g.setColour(Colours::black);
-    g.drawText("VBAP Model", getLocalBounds(), Justification::centredTop);
-    
-    g.setColour(Colours::black);
-    int lineDistance = 35;
-    drawLine(g, lineDistance);
-    lineDistance += 20 + 25;
+
+    int lineDistance = 20 + 25;
     drawLine(g, lineDistance);
     lineDistance += 25 * 5;
     drawLine(g, lineDistance);
