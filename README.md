@@ -1,12 +1,12 @@
-# Spacial-Audio
+# Spacial-Audio App
 
-Introduction
+## Introduction
 
 An GUI application built with JUCE framework which calculates the dBFS of 4 surrounded speakers to simulate the virtual sound source in the room.
 
 The user can adjust the positions of the listener, speakers and supposed virtual sound source to calculate the volume outputs of the 4 speakers.
 
-![VBAP](https://github.com/Silver92/Spacial-Audio/blob/master/Screen%20Shot%202019-10-04%20at%2014.27.13.png)
+<center><img src="https://github.com/Silver92/Spacial-Audio/blob/Develop/Sample%20Pictures/Screen%20Shot%202019-10-04%20at%2014.27.13.png" alt="Screen Shot 2019-11-11 at 19.08.05" align="center"/></center>
 
 ## Compile the Project
 
@@ -22,19 +22,19 @@ A simple way to compile the project:
 
 3. Open the projucer in the Juce Framework folder then select the open button in the File panel, or select the "Open Existing Project" in the New Project guiding panel.
 
-   <img src="https://github.com/Silver92/My-Delay/blob/Develop/Sample Pictures/Screen Shot 2019-11-11 at 19.08.05.png" alt="Screen Shot 2019-11-11 at 19.08.05" style="zoom:30%;" />
+   <center><img src="https://github.com/Silver92/Spacial-Audio/blob/Develop/Sample%20Pictures/Screen%20Shot%202019-11-11%20at%2019.08.05.png" alt="Screen Shot 2019-11-11 at 19.08.05" style="zoom:30%" align="center"/></center>
 
 4. Find the directory of the project and select the ".jucer" file
 
 5. Selected the exporter for the project based on the OS and click "save and open in IDE" button on the right side
 
-   <img src="https://github.com/Silver92/My-Delay/blob/Develop/Sample Pictures/Screen Shot 2019-11-11 at 19.08.24.png" alt="Screen Shot 2019-11-11 at 19.08.24" style="zoom:40%;" />
+   <center><img src="https://github.com/Silver92/Spacial-Audio/blob/Develop/Sample%20Pictures/Screen%20Shot%202019-11-11%20at%2019.08.24.png" alt="Screen Shot 2019-11-11 at 19.08.24" style="zoom:40%" align="center"/></center>
 
 ## Other Questions
 
 The project is developed and tested under the Mac + Xcode environment. Users who compile in Windows OS may have following problems:
 
-<img src="https://github.com/Silver92/My-Delay/blob/Develop/Sample Pictures/Screen Shot 2019-11-11 at 19.20.16.png" alt="Screen Shot 2019-11-11 at 19.20.16" style="zoom:30%;" />
+<center><img src="https://github.com/Silver92/Spacial-Audio/blob/Develop/Sample%20Pictures/Screen%20Shot%202019-11-11%20at%2019.20.16.png" alt="Screen Shot 2019-11-11 at 19.20.16" style="zoom:30%" align="center"/></center>
 
 1. There may be some lost path of the JUCE models
 
