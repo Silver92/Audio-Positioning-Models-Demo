@@ -17,5 +17,5 @@
     - Wrong input
  # Make the window resizable
  # Scale the view panel to different scopes
- # Make components moving
+ # Make view components moving to set the parameters
  */

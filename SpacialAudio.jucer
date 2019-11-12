@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="HQlnxv" name="SpacialAudio" jucerVersion="5.4.4">
+<JUCERPROJECT id="HQlnxv" name="SpacialAudio" jucerVersion="5.4.5">
   <MAINGROUP id="awtWAR" name="SpacialAudio">
     <GROUP id="{5E20E228-DF1B-65DF-25F9-5119FCE21E2A}" name="Managers">
       <FILE id="tCB5SY" name="PresetManager.cpp" compile="1" resource="0"
