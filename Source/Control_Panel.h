@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Panel_Base.h"
+#include "Input_Label.h"
 
 class ControlPanel
 :   public PanelBase
@@ -19,12 +20,29 @@ public:
     ControlPanel();
     ~ControlPanel();
     
-    virtual TextButton& getRunButton() = 0;
-    virtual std::vector<std::shared_ptr<Point<float>>> getPos() = 0;
-    virtual std::vector<float>& getGainVals() = 0;
-    virtual std::vector<std::shared_ptr<Label>> getLabels() = 0;
-    virtual void calPos() = 0;
+    TextButton& getRunButton();
+    std::vector<std::shared_ptr<Label>> getLabels();
     
-private:
+    std::vector<std::shared_ptr<Point<float>>> getPos();
+    std::vector<float>& getGainVals();
+    void calPos();
+
+protected:
+    void drawLine(juce::Graphics &g, int lineDistance);
+    void resized() override;
     
+    void setText(Label& label, int fontSize, int xPos, int yPos, int width, String text = "");
+    void setInputText(int fontSize, int xPos, int yPos, int width);
+    void setInput(int fontSize, int yPos);
+    
+    Label listenerPosTitle;
+    Label speakerPosTitle;
+    Label sourcePosTitle;
+    TextButton runButton;
+    
+    std::vector<std::shared_ptr<Label>> mXYLabels;
+    std::vector<std::shared_ptr<Label>> mPosLabels;
+    
+    std::vector<std::shared_ptr<Point<float>>> mPos;
+    std::vector<float> mGainVals;
 };

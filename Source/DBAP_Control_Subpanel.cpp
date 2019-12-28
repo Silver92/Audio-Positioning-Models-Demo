@@ -13,46 +13,43 @@
 DBAPSubpanel::DBAPSubpanel()
 {
     setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
+    
+    int yPos = 0;
+    setText(listenerPosTitle, 20, 0, yPos, CONTROL_PANEL_WIDTH, "Listener Position");
+    yPos += 25;
+    setInput(20, yPos);
+    
+    yPos += 25;
+    setText(speakerPosTitle, 20, 0, yPos, CONTROL_PANEL_WIDTH, "Speakers Position");
+    yPos += 25;
+    setInput(20, yPos);
+    yPos += 25;
+    setInput(20, yPos);
+    yPos += 25;
+    setInput(20, yPos);
+    yPos += 25;
+    setInput(20, yPos);
 }
 
 DBAPSubpanel::~DBAPSubpanel()
 {
-    
-}
-
-TextButton& DBAPSubpanel::getRunButton()
-{
-    return runButton;
-}
-
-std::vector<std::shared_ptr<Point<float>>> DBAPSubpanel::getPos()
-{
-    return mPos;
-}
-
-std::vector<float>& DBAPSubpanel::getGainVals()
-{
-    return mGainVals;
-}
-
-std::vector<std::shared_ptr<Label>> DBAPSubpanel::getLabels()
-{
-    return mPosLabel;
-}
-
-void DBAPSubpanel::calPos()
-{
-    
+    mXYLabels.clear();
+    mPosLabels.clear();
 }
 
 void DBAPSubpanel::paint(Graphics& g)
 {
-    g.setFont(25);
+    g.setColour(Colours::whitesmoke);
+    g.fillAll();
     g.setColour(Colours::black);
-    g.drawText("DBAP Model",
-               0,
+    g.drawRect(0,
                0,
                CONTROL_PANEL_WIDTH,
                CONTROL_PANEL_HEIGHT,
-               Justification::centred);
+               2);
+
+    int lineDistance = 25 * 2;
+    drawLine(g, lineDistance);
+    lineDistance += 25 * 5;
+    drawLine(g, lineDistance);
 }
