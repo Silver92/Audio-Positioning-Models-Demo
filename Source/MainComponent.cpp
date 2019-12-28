@@ -13,6 +13,7 @@ MainComponent::MainComponent()
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
+    /** Initiate the control panel*/
     mControlPanel.reset(new VBAPSubpanel());
     mControlPanel->setBounds(VIEW_PANEL_WIDTH,
                              COMBOBOX_HEIGHT,
@@ -20,11 +21,14 @@ MainComponent::MainComponent()
                              CONTROL_PANEL_HEIGHT);
     addAndMakeVisible(mControlPanel.get());
     
+    /** Initiate the view panel */
     mViewPanel.reset(new ViewPanel());
     addAndMakeVisible(mViewPanel.get());
     
+    /** Initiate the model manager */
     mModelManager.reset(new VBAP());
     
+    /** Set up the run button to calculate when clicked */
     mControlPanel->getRunButton().onClick = [this]
     {
         mModelManager->calculate(mControlPanel->getPos(),
@@ -34,15 +38,16 @@ MainComponent::MainComponent()
         
     };
     
+    /** Load the preset Manager and preset*/
     mPresetManager.reset(new PresetManager());
     mPresetManager->loadPreviousPreset(mControlPanel->getLabels());
-    
     mControlPanel->calPos();
     mModelManager->calculate(mControlPanel->getPos(),
                              mControlPanel->getGainVals());
     mViewPanel->m2DPanel->drawComponents(mControlPanel->getPos(),
                                          mControlPanel->getGainVals());
     
+    /** Inittiate the combobox*/
     mComboBox.reset(new ComboBox());
     mComboBox->setBounds(VIEW_PANEL_WIDTH + 2,
                          0 + 2,
@@ -80,28 +85,32 @@ void MainComponent::resized()
 //==============================================================================
 void MainComponent::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
 {
-    PanelModelType modelType = static_cast<PanelModelType>(comboBoxThatHasChanged->getSelectedItemIndex());
+    PanelModelType modelType = static_cast<PanelModelType>
+        (comboBoxThatHasChanged->getSelectedItemIndex());
     
     switch (modelType) {
             
         case (PanelModel_VBAP):{
-            
+            comboBoxThatHasChanged->
+            setText(comboBoxThatHasChanged->getItemText(modelType));
             mControlPanel.reset(new VBAPSubpanel());
             mModelManager.reset(new VBAP());
             
         }break;
             
         case (PanelModel_MDAP):{
-            
+            comboBoxThatHasChanged->
+            setText(comboBoxThatHasChanged->getItemText(modelType));
             mControlPanel.reset(new MDAPSubpanel());
-//            mModelManager.reset(new MDAP());
+            mModelManager.reset(new MDAP());
             
         }break;
             
         case (PanelModel_DBAP):{
-            
+            comboBoxThatHasChanged->
+            setText(comboBoxThatHasChanged->getItemText(modelType));
             mControlPanel.reset(new DBAPSubpanel());
-//            mModelManager.reset(new MDAP());
+            mModelManager.reset(new DBAP());
                         
         }break;
             
