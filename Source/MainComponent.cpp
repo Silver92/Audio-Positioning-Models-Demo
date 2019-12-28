@@ -13,53 +13,32 @@ MainComponent::MainComponent()
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
-    /** Initiate the control panel*/
-    mControlPanel.reset(new VBAPSubpanel());
-    mControlPanel->setBounds(VIEW_PANEL_WIDTH,
-                             COMBOBOX_HEIGHT,
-                             CONTROL_PANEL_WIDTH,
-                             CONTROL_PANEL_HEIGHT);
-    addAndMakeVisible(mControlPanel.get());
-    
     /** Initiate the view panel */
     mViewPanel.reset(new ViewPanel());
     addAndMakeVisible(mViewPanel.get());
     
+    /** Initiate the control panel*/
+    mControlPanel.reset(new VBAPSubpanel());
+    mControlPanel->setBounds(VIEW_PANEL_WIDTH,
+                             0,
+                             CONTROL_PANEL_WIDTH,
+                             CONTROL_PANEL_HEIGHT);
+    addAndMakeVisible(mControlPanel.get());
+    
     /** Initiate the model manager */
     mModelManager.reset(new VBAP());
     
-    /** Set up the run button to calculate when clicked */
-    mControlPanel->getRunButton().onClick = [this]
-    {
-        mModelManager->calculate(mControlPanel->getPos(),
-                                 mControlPanel->getGainVals());
-        mViewPanel->m2DPanel->drawComponents(mControlPanel->getPos(),
-                                             mControlPanel->getGainVals());
-        
-    };
+    /** Make connections between view and models */
+    modelInteractions();
     
     /** Load the preset Manager and preset*/
     mPresetManager.reset(new PresetManager());
     mPresetManager->loadPreviousPreset(mControlPanel->getLabels());
-    mControlPanel->calPos();
-    mModelManager->calculate(mControlPanel->getPos(),
-                             mControlPanel->getGainVals());
-    mViewPanel->m2DPanel->drawComponents(mControlPanel->getPos(),
-                                         mControlPanel->getGainVals());
-    
-    /** Inittiate the combobox*/
-    mComboBox.reset(new ComboBox());
-    mComboBox->setBounds(VIEW_PANEL_WIDTH + 2,
-                         0 + 2,
-                         CONTROL_PANEL_WIDTH - 2*2,
-                         COMBOBOX_HEIGHT - 2*2);
-    mComboBox->addItem("VBAP", 1);
-    mComboBox->addItem("MDAP", 2);
-    mComboBox->addItem("DBAP", 3);
-    mComboBox->addListener(this);
-    mComboBox->setColour(ComboBox::ColourIds::backgroundColourId, Colours::whitesmoke);
-    mComboBox->setColour(ComboBox::ColourIds::arrowColourId, Colours::whitesmoke);
-    addAndMakeVisible(mComboBox.get());
+    prepareInputData();
+    mModelManager->calculate(mPos,
+                             mGainVals);
+    mViewPanel->m2DPanel->drawComponents(mPos,
+                                         mGainVals);
 }
 
 MainComponent::~MainComponent()
@@ -83,32 +62,26 @@ void MainComponent::resized()
 }
 
 //==============================================================================
-void MainComponent::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
+void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
 {
     PanelModelType modelType = static_cast<PanelModelType>
-        (comboBoxThatHasChanged->getSelectedItemIndex());
+        (comboBoxThatHasChanged.getSelectedItemIndex());
     
     switch (modelType) {
             
         case (PanelModel_VBAP):{
-            comboBoxThatHasChanged->
-            setText(comboBoxThatHasChanged->getItemText(modelType));
             mControlPanel.reset(new VBAPSubpanel());
             mModelManager.reset(new VBAP());
             
         }break;
             
         case (PanelModel_MDAP):{
-            comboBoxThatHasChanged->
-            setText(comboBoxThatHasChanged->getItemText(modelType));
             mControlPanel.reset(new MDAPSubpanel());
             mModelManager.reset(new MDAP());
             
         }break;
             
         case (PanelModel_DBAP):{
-            comboBoxThatHasChanged->
-            setText(comboBoxThatHasChanged->getItemText(modelType));
             mControlPanel.reset(new DBAPSubpanel());
             mModelManager.reset(new DBAP());
                         
@@ -122,19 +95,58 @@ void MainComponent::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
     }
     
     mControlPanel->setBounds(VIEW_PANEL_WIDTH,
-                             COMBOBOX_HEIGHT,
+                             0,
                              CONTROL_PANEL_WIDTH,
                              CONTROL_PANEL_HEIGHT);
     addAndMakeVisible(mControlPanel.get());
+    
+    modelInteractions();
+    prepareInputData();
+    mModelType = modelType;
+}
+
+void MainComponent::modelInteractions()
+{
+    /**
+     Make connections between view and models
+     */
     mControlPanel->getRunButton().onClick = [this]
     {
-        mModelManager->calculate(mControlPanel->getPos(),
-                                 mControlPanel->getGainVals());
-        mViewPanel->m2DPanel->drawComponents(mControlPanel->getPos(),
-                                             mControlPanel->getGainVals());
-        
+        mModelManager->calculate(mPos, mGainVals);
+        //        mViewPanel->m2DPanel->
+        //        drawComponents(mPos, mGainVals);
     };
-    mControlPanel->calPos();
     
-    mModelType = modelType;
+    mControlPanel->getComboBox().onChange = [this]
+    {
+        std::cout << "combo box changes" << std::endl;
+        comboBoxChanged(mControlPanel->getComboBox());
+    };
+}
+
+void MainComponent::prepareInputData()
+{
+    /**
+     Save the user input into the position vectors
+     */
+    
+    mPos.clear();
+    auto labels = mControlPanel->getLabels();
+    for (int i = 0; i < labels.size() - 1; i += 2)
+    {
+        std::shared_ptr<Point<float>> point(new Point<float>
+                                            (labels[i]->getText()
+                                             .getFloatValue(),
+                                             labels[i+1]->getText()
+                                             .getFloatValue()));
+        labels[i]->onTextChange = [this, i, point, labels]
+                                    {point->
+                                    setX(labels[i]->getText()
+                                    .getFloatValue());};
+        labels[i+1]->onTextChange = [this, i, point, labels]
+                                    {point->
+                                    setY(labels[i+1]->getText()
+                                    .getFloatValue());};
+        mPos.push_back(point);
+    }
 }

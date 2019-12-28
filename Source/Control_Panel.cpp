@@ -10,30 +10,18 @@
 
 #include "Control_Panel.h"
 
+//==============================================================================
 ControlPanel::ControlPanel()
 {
     setSize (CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
     
-    // draw a run button
-    runButton.setButtonText("Run");
-    runButton.setColour(TextButton::buttonColourId, Colours::whitesmoke.darker());
-    runButton.setBounds(2,
-                         getBottom() - 45 - 2,
-                         CONTROL_PANEL_WIDTH - 2*2,
-                         45);
-    addAndMakeVisible(runButton);
+    comboBoxInit();
+    runButtonInit();
 }
 
 ControlPanel::~ControlPanel()
 {
     
-}
-
-void ControlPanel::drawLine(juce::Graphics &g, int lineDistance)
-{
-    Line<float> line (Point<float> (0, lineDistance),
-                      Point<float> (CONTROL_PANEL_WIDTH, lineDistance));
-    g.drawLine(line, 2);
 }
 
 void ControlPanel::resized()
@@ -43,6 +31,44 @@ void ControlPanel::resized()
                          CONTROL_PANEL_WIDTH - 2*2,
                          45);
     runButton.setBounds(area);
+}
+
+void ControlPanel::comboBoxInit() {
+    mComboBox.setBounds(2,
+                        2,
+                        CONTROL_PANEL_WIDTH - 2*2,
+                        COMBOBOX_HEIGHT - 2);
+    mComboBox.addItem("VBAP", 1);
+    mComboBox.addItem("MDAP", 2);
+    mComboBox.addItem("DBAP", 3);
+    mComboBox.setColour(ComboBox::ColourIds::backgroundColourId, Colours::whitesmoke);
+    mComboBox.setColour(ComboBox::ColourIds::arrowColourId, Colours::black);
+    mComboBox.setColour(ComboBox::ColourIds::textColourId, Colours::black);
+    mComboBox.setColour(ComboBox::ColourIds::buttonColourId, Colours::black);
+    mComboBox.setJustificationType(Justification::centred);
+    // TODO make the combobox and run button static;
+//    mComboBox.setText(mComboBox.getItemText(modelType));
+    addAndMakeVisible(mComboBox);
+}
+
+void ControlPanel::runButtonInit() {
+    runButton.setButtonText("Run");
+    runButton.setColour(TextButton::buttonColourId, Colours::whitesmoke.darker());
+    runButton.setBounds(2,
+                        getBottom() - 45 - 2,
+                        CONTROL_PANEL_WIDTH - 2*2,
+                        45);
+    addAndMakeVisible(runButton);
+}
+
+//==============================================================================
+/** Methods for subpanel use*/
+
+void ControlPanel::drawLine(juce::Graphics &g, int lineDistance)
+{
+    Line<float> line (Point<float> (0, lineDistance),
+                      Point<float> (CONTROL_PANEL_WIDTH, lineDistance));
+    g.drawLine(line, 2);
 }
 
 void ControlPanel::setText(Label& label,
@@ -90,44 +116,19 @@ void ControlPanel::setInput(int fontSize, int yPos)
     setInputText(fontSize, getWidth()/4*3 - 20, yPos, getWidth()/4);
 }
 
-// Interface for external use
+//==============================================================================
+/** Interface for external use */
+ComboBox& ControlPanel::getComboBox()
+{
+    return mComboBox;
+}
 
 TextButton& ControlPanel::getRunButton()
 {
     return runButton;
 }
 
-std::vector<std::shared_ptr<Label>> ControlPanel::getLabels()
+std::vector<std::shared_ptr<Label>>& ControlPanel::getLabels()
 {
     return mPosLabels;
-}
-
-std::vector<std::shared_ptr<Point<float>>> ControlPanel::getPos()
-{
-    return mPos;
-}
-
-std::vector<float>& ControlPanel::getGainVals()
-{
-    return mGainVals;
-}
-
-// Save the user input into the position vectors
-void ControlPanel::calPos()
-{
-    for (int i = 0; i < mPosLabels.size() - 1; i += 2)
-    {
-        std::shared_ptr<Point<float>> point(new Point<float>
-                                            (mPosLabels[i]->getText()
-                                             .getFloatValue(),
-                                             mPosLabels[i+1]->getText()
-                                             .getFloatValue()));
-        mPosLabels[i]->onTextChange = [this, i, point]{point->
-                                    setX(mPosLabels[i]->getText()
-                                    .getFloatValue());};
-        mPosLabels[i+1]->onTextChange = [this, i, point]{point->
-                                    setY(mPosLabels[i+1]->getText()
-                                    .getFloatValue());};
-        mPos.push_back(point);
-    }
 }
