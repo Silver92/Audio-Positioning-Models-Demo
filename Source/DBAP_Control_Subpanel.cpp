@@ -14,7 +14,7 @@ DBAPSubpanel::DBAPSubpanel()
 {
     setSize(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
     
-    int yPos = 0;
+    int yPos = COMBOBOX_HEIGHT;
     setText(listenerPosTitle, 20, 0, yPos, CONTROL_PANEL_WIDTH, "Listener Position");
     yPos += 25;
     setInput(20, yPos);
@@ -48,7 +48,9 @@ void DBAPSubpanel::paint(Graphics& g)
                CONTROL_PANEL_HEIGHT,
                2);
 
-    int lineDistance = 25 * 2;
+    int lineDistance = COMBOBOX_HEIGHT;
+    drawLine(g, lineDistance);
+    lineDistance += 25 * 2;
     drawLine(g, lineDistance);
     lineDistance += 25 * 5;
     drawLine(g, lineDistance);

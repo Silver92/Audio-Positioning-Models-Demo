@@ -37,11 +37,10 @@ enum PanelModelType
     PanelModel_TotalNumModels
 };
 
-class MainComponent   : public Component,
-                        public ComboBox::Listener
+class MainComponent   : public Component
 {
 public:
-    //==============================================================================
+//==============================================================================
     MainComponent();
     ~MainComponent();
 
@@ -50,16 +49,21 @@ public:
     void resized() override;
     
     //==============================================================================
-    void comboBoxChanged(ComboBox* comboBoxThatHasChanged) override;
+    void comboBoxChanged(ComboBox& comboBoxThatHasChanged);
 
 private:
     //==============================================================================
+    void modelInteractions();
+    void prepareInputData();
+    
     std::unique_ptr<ControlPanel> mControlPanel;
     std::unique_ptr<ViewPanel> mViewPanel;
     std::unique_ptr<ModelManager> mModelManager;
     std::unique_ptr<PresetManager> mPresetManager;
-    
-    std::unique_ptr<ComboBox> mComboBox;
+
     PanelModelType mModelType;
+    
+    std::vector<std::shared_ptr<Point<float>>> mPos;
+    std::vector<float> mGainVals;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
