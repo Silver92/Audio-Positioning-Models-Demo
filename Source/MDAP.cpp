@@ -39,17 +39,29 @@ void MDAP::calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
         
         ampVectors.push_back(Point<float>(x/length, y/length));
         
+        std::cout << "vector x: " << x/length << " vector y: " << y/length << std::endl;
     }
     
     // Create 2 vectors by spinning the source vector clockwise
     // and anticlockwise.
     auto vSourceX = ampVectors[ampVectors.size()-1].getX();
     auto vSourceY = ampVectors[ampVectors.size()-1].getY();
-    float theta = 15.f;
-    auto vSourceX1 = vSourceX * cos(theta) - vSourceY * sin(theta);
-    auto vSourceY1 = vSourceX * sin(theta) + vSourceY * cos(theta);
-    auto vSourceX2 = vSourceX * cos(-theta) - vSourceY * sin(-theta);
-    auto vSourceY2 = vSourceX * sin(-theta) + vSourceY * sin(-theta);
+    
+    float theta = (15.f/180.f) * juce::MathConstants<float>::pi;
+    auto cos_theta = juce::dsp::FastMathApproximations::cos(theta);
+    auto sin_theta = juce::dsp::FastMathApproximations::sin(theta);
+    auto m_cos_theta = juce::dsp::FastMathApproximations::cos(-theta);
+    auto m_sin_theta = juce::dsp::FastMathApproximations::sin(-theta);
+    auto vSourceX1 = vSourceX * cos_theta - vSourceY * sin_theta;
+    auto vSourceY1 = vSourceX * sin_theta + vSourceY * cos_theta;
+    auto vSourceX2 = vSourceX * m_cos_theta - vSourceY * m_sin_theta;
+    auto vSourceY2 = vSourceX * m_sin_theta + vSourceY * m_cos_theta;
+    
+    std::cout << "cos(theta): " << cos_theta << " sin(theta): " << sin_theta << std::endl;
+    std::cout << "-cos(theta): " << m_cos_theta << " -sin(theta): " << m_sin_theta << std::endl;
+    std::cout << "SourceX: " << vSourceX << " SourceY: " << vSourceY << std::endl;
+    std::cout << "SourceX1: " << vSourceX1 << " SourceY1: " << vSourceY1 << std::endl;
+    std::cout << "SourceX2: " << vSourceX2 << " SourceY2: " << vSourceY2 << std::endl;
     
     inGainVectors.clear();
     for (int i = 0; i < ampVectors.size() - 1; i++) {
@@ -59,9 +71,17 @@ void MDAP::calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
     calculateGainDistribution(ampVectors, inGainVectors, vSourceX1, vSourceY1);
     calculateGainDistribution(ampVectors, inGainVectors, vSourceX2, vSourceY2);
     
-    for (int i = 0; i < inGainVectors.size(); i++) {
+    auto gainNum = inGainVectors.size();
+    float sum = 0.f;
+    for (int i = 0; i< gainNum; i++) {
+        sum += inGainVectors[i] * inGainVectors[i];
+    }
+    sum = sqrt(sum);
+    std::cout << "sum = " << sum << std::endl;
+    for (int i = 0; i < gainNum; i++) {
         inGainVectors[i] =
-        Decibels::gainToDecibels(denormalize(inGainVectors[i] / 2.f));
+        Decibels::gainToDecibels(denormalize(inGainVectors[i] / sum));
+        std::cout << "MDAP final gain: " << inGainVectors[i] << std::endl;
     }
 }
 

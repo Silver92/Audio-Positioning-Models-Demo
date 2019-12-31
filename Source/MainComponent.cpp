@@ -113,13 +113,12 @@ void MainComponent::modelInteractions()
     mControlPanel->getRunButton().onClick = [this]
     {
         mModelManager->calculate(mPos, mGainVals);
-        //        mViewPanel->m2DPanel->
-        //        drawComponents(mPos, mGainVals);
+        mViewPanel->m2DPanel->
+        drawComponents(mPos, mGainVals);
     };
     
     mControlPanel->getComboBox().onChange = [this]
     {
-        std::cout << "combo box changes" << std::endl;
         comboBoxChanged(mControlPanel->getComboBox());
     };
 }

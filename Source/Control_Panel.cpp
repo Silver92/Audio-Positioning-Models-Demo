@@ -37,7 +37,7 @@ void ControlPanel::comboBoxInit() {
     mComboBox.setBounds(2,
                         2,
                         CONTROL_PANEL_WIDTH - 2*2,
-                        COMBOBOX_HEIGHT - 2);
+                        COMBOBOX_HEIGHT - 2*2);
     mComboBox.addItem("VBAP", 1);
     mComboBox.addItem("MDAP", 2);
     mComboBox.addItem("DBAP", 3);
