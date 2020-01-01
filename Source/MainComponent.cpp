@@ -72,19 +72,34 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
         case (PanelModel_VBAP):{
             mControlPanel.reset(new VBAPSubpanel());
             mModelManager.reset(new VBAP());
-            
+            mControlPanel->getRunButton().onClick = [this]
+            {
+                mModelManager->calculate(mPos, mGainVals);
+                mViewPanel->m2DPanel->
+                drawComponents(mPos, mGainVals);
+            };
         }break;
             
         case (PanelModel_MDAP):{
             mControlPanel.reset(new MDAPSubpanel());
             mModelManager.reset(new MDAP());
-            
+            mControlPanel->getRunButton().onClick = [this]
+            {
+                mModelManager->calculate(mPos, mGainVals);
+                mViewPanel->m2DPanel->
+                drawComponents(mPos, mGainVals);
+            };
         }break;
             
         case (PanelModel_DBAP):{
             mControlPanel.reset(new DBAPSubpanel());
             mModelManager.reset(new DBAP());
-                        
+            mControlPanel->getRunButton().onClick = [this]
+            {
+                mModelManager->calculate(mPos, mGainVals);
+                mViewPanel->m2DPanel->
+                drawComponents(mPos, mGainVals, false);
+            };
         }break;
             
         default:
@@ -110,13 +125,6 @@ void MainComponent::modelInteractions()
     /**
      Make connections between view and models
      */
-    mControlPanel->getRunButton().onClick = [this]
-    {
-        mModelManager->calculate(mPos, mGainVals);
-        mViewPanel->m2DPanel->
-        drawComponents(mPos, mGainVals);
-    };
-    
     mControlPanel->getComboBox().onChange = [this]
     {
         comboBoxChanged(mControlPanel->getComboBox());

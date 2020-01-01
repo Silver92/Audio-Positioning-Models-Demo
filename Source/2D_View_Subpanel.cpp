@@ -26,7 +26,8 @@ void TwoDSubpanel::paint(Graphics& g)
 }
 
 void TwoDSubpanel::drawComponents(const std::vector<std::shared_ptr<Point<float>>>& inPos,
-                                  const std::vector<float>& dBFSs)
+                                  const std::vector<float>& dBFSs,
+                                  const bool hasSoundSource)
 {
     listener.clear();
     speakers.clear();
@@ -41,7 +42,7 @@ void TwoDSubpanel::drawComponents(const std::vector<std::shared_ptr<Point<float>
             addAndMakeVisible(mListener.get());
             listener.push_back(mListener);
         // Draw Sound Source
-        } else if (i == inPos.size() - 1) {
+        } else if ((i == inPos.size() - 1) && hasSoundSource) {
             std::shared_ptr<SoundSource> mSoundSource (new SoundSource());
             mSoundSource->setCentrePosition(inPos[i]->getX(),
                                             inPos[i]->getY());
