@@ -25,7 +25,8 @@ public:
     
     void paint(Graphics& g) override;
     void drawComponents(const std::vector<std::shared_ptr<Point<float>>>& inPos,
-                        const std::vector<float>& dBFSs);
+                        const std::vector<float>& dBFSs,
+                        const bool hasSoundSource = true);
     
 private:
     std::vector<std::shared_ptr<Speaker>> speakers;
