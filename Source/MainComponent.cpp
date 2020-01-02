@@ -125,19 +125,25 @@ void MainComponent::prepareInputData()
     auto labels = mControlPanel->getLabels();
     for (int i = 0; i < labels.size() - 1; i += 2)
     {
-        std::shared_ptr<Point<float>> point(new Point<float>
+        std::shared_ptr<Point<float>> point(
+                                            new Point<float>
                                             (labels[i]->getText()
                                              .getFloatValue(),
                                              labels[i+1]->getText()
-                                             .getFloatValue()));
-        labels[i]->onTextChange = [this, i, point, labels]
-                                    {point->
-                                    setX(labels[i]->getText()
-                                    .getFloatValue());};
-        labels[i+1]->onTextChange = [this, i, point, labels]
-                                    {point->
-                                    setY(labels[i+1]->getText()
-                                    .getFloatValue());};
+                                             .getFloatValue())
+                                            );
         mPos.push_back(point);
+        labels[i]->onTextChange = [this, i]
+        {
+            mPos[mPos.size()-1]->
+            setX(mControlPanel->getLabels()[i]->getText()
+                 .getFloatValue());
+        };
+        labels[i+1]->onTextChange = [this, i]
+        {
+            mPos[mPos.size()-1]->
+            setY(mControlPanel->getLabels()[i+1]->getText()
+                 .getFloatValue());
+        };
     }
 }
