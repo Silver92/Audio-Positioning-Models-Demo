@@ -11,7 +11,7 @@
 #pragma once
 
 #include "Panel_Base.h"
-#include "Input_Label.h"
+#include "PositionControl_Panel.h"
 
 class ControlPanel
 :   public PanelBase
@@ -26,30 +26,16 @@ public:
     ComboBox& getComboBox();
     TextButton& getRunButton();
     std::vector<std::shared_ptr<Label>>& getLabels();
+    std::unique_ptr<PositionControl_Panel>& getPositionPanel();
 
-protected:
+private:
     //==============================================================================
     void resized() override;
     void comboBoxInit();
     void runButtonInit();
     
     //==============================================================================
-    void drawLine(juce::Graphics &g, int lineDistance);
-    void setText(Label& label, int fontSize, int xPos, int yPos, int width, String text = "");
-    void setInputText(int fontSize, int xPos, int yPos, int width);
-    void setInput(int fontSize, int yPos);
-    
-    //==============================================================================
+    std::unique_ptr<PositionControl_Panel> mPositionPanel;
     ComboBox mComboBox;
-    Label listenerPosTitle;
-    Label speakerPosTitle;
-    Label sourcePosTitle;
     TextButton runButton;
-    
-    std::vector<std::shared_ptr<Label>> mXYLabels;
-    std::vector<std::shared_ptr<Label>> mPosLabels;
-    
-    //==============================================================================
-    std::vector<std::shared_ptr<Point<float>>> mPos;
-    std::vector<float> mGainVals;
 };

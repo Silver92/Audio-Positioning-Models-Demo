@@ -53,7 +53,6 @@ public:
 
 private:
     //==============================================================================
-    void modelInteractions();
     void prepareInputData();
     
     std::unique_ptr<ControlPanel> mControlPanel;

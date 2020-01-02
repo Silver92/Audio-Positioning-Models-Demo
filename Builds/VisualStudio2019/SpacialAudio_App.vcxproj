@@ -144,6 +144,7 @@
     <ClCompile Include="..\..\Source\MDAP.cpp"/>
     <ClCompile Include="..\..\Source\DBAP.cpp"/>
     <ClCompile Include="..\..\Source\Control_Panel.cpp"/>
+    <ClCompile Include="..\..\Source\PositionControl_Panel.cpp"/>
     <ClCompile Include="..\..\Source\VBAP_Control_Subpanel.cpp"/>
     <ClCompile Include="..\..\Source\MDAP_Control_Subpanel.cpp"/>
     <ClCompile Include="..\..\Source\DBAP_Control_Subpanel.cpp"/>
@@ -1945,6 +1946,7 @@
     <ClInclude Include="..\..\Source\MDAP.h"/>
     <ClInclude Include="..\..\Source\DBAP.h"/>
     <ClInclude Include="..\..\Source\Control_Panel.h"/>
+    <ClInclude Include="..\..\Source\PositionControl_Panel.h"/>
     <ClInclude Include="..\..\Source\VBAP_Control_Subpanel.h"/>
     <ClInclude Include="..\..\Source\MDAP_Control_Subpanel.h"/>
     <ClInclude Include="..\..\Source\DBAP_Control_Subpanel.h"/>
