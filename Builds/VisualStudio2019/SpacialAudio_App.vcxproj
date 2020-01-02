@@ -1959,8 +1959,9 @@
     <ClInclude Include="..\..\Source\Speaker_Component.h"/>
     <ClInclude Include="..\..\Source\Panel_Base.h"/>
     <ClInclude Include="..\..\Source\Audio_Helper.h"/>
-    <ClInclude Include="..\..\Source\TODO.h"/>
+    <ClInclude Include="..\..\Source\Parameters.h"/>
     <ClInclude Include="..\..\Source\UI_Dimensions.h"/>
+    <ClInclude Include="..\..\Source\TODO.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>

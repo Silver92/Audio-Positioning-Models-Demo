@@ -56,8 +56,8 @@ void DBAP::calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
         inGainVectors.push_back(
         Decibels::gainToDecibels(denormalize(1.f / temp)));
         
-        std::cout << "DBAP final gain: " << inGainVectors[i] << std::endl;
-        std::cout << "DBAP final gain: " << Decibels::gainToDecibels(denormalize(1.f / temp)) << std::endl;
+        std::cout << "DBAP raw gain: " << inGainVectors[i] << std::endl;
+        std::cout << "DBAP cal gain: " << Decibels::gainToDecibels(denormalize(1.f / temp)) << std::endl;
     }
     
     for (int i = 0; i < inGainVectors.size(); i++) {

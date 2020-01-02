@@ -13,6 +13,9 @@ MainComponent::MainComponent()
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
+    /** Load the preset Manager and preset*/
+    mPresetManager.reset(new PresetManager());
+    
     /** Initiate the view panel */
     mViewPanel.reset(new ViewPanel());
     addAndMakeVisible(mViewPanel.get());
@@ -25,21 +28,15 @@ MainComponent::MainComponent()
     };
     addAndMakeVisible(mControlPanel.get());
     
-    
-    mControlPanel->getComboBox().setSelectedId(PanelModel_VBAP + 1);
-    
-    /** Load the preset Manager and preset*/
-//    mPresetManager.reset(new PresetManager());
-//    mPresetManager->loadPreviousPreset(mControlPanel->getLabels());
-//    prepareInputData();
-//    mModelManager->calculate(mPos, mGainVals);
-//    mViewPanel->m2DPanel->
-//    drawComponents(mPos, mGainVals);
+    /** Load the model and the user input panel*/
+    mControlPanel->getComboBox().
+    setSelectedId(mPresetManager->loadPreviousModelType() + 1);
 }
 
 MainComponent::~MainComponent()
 {
-//    mPresetManager->saveCurrentPreset(mControlPanel->getLabels());
+    mPresetManager->saveCurrentPreset(mControlPanel->getLabels(),
+                                      mModelType);
     mPos.clear();
     mGainVals.clear();
 }
@@ -62,12 +59,13 @@ void MainComponent::resized()
 //==============================================================================
 void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
 {
+    
     PanelModelType modelType = static_cast<PanelModelType>
         (comboBoxThatHasChanged.getSelectedItemIndex());
     
     switch (modelType) {
             
-        case (PanelModel_VBAP):{
+        case (PanelModelType_VBAP):{
             mControlPanel->getPositionPanel().
             reset(new VBAPSubpanel());
             mModelManager.reset(new VBAP());
@@ -79,7 +77,7 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
             };
         }break;
             
-        case (PanelModel_MDAP):{
+        case (PanelModelType_MDAP):{
             mControlPanel->getPositionPanel().
             reset(new MDAPSubpanel());
             mModelManager.reset(new MDAP());
@@ -91,7 +89,7 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
             };
         }break;
             
-        case (PanelModel_DBAP):{
+        case (PanelModelType_DBAP):{
             mControlPanel->getPositionPanel().
             reset(new DBAPSubpanel());
             mModelManager.reset(new DBAP());
@@ -104,14 +102,27 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
         }break;
             
         default:
-        case (PanelModel_TotalNumModels):{
+        case (PanelModelType_TotalNumModels):{
             jassertfalse;
         }break;
             
     }
     
     addAndMakeVisible(mControlPanel->getPositionPanel().get());
+    
+    mPresetManager->
+    loadPreviousPreset(mControlPanel->getLabels(), modelType);
     prepareInputData();
+    
+    std::cout << "mPos " << mPos.size() << std::endl;
+    
+    mModelManager->calculate(mPos, mGainVals);
+    modelType == PanelModelType_DBAP ?
+    (mViewPanel->m2DPanel->
+     drawComponents(mPos, mGainVals, false)) :
+    (mViewPanel->m2DPanel->
+    drawComponents(mPos, mGainVals));
+    
     mModelType = modelType;
 }
 
@@ -133,17 +144,19 @@ void MainComponent::prepareInputData()
                                              .getFloatValue())
                                             );
         mPos.push_back(point);
-        labels[i]->onTextChange = [this, i]
+        labels[i]->onTextChange = [this, i, point]
         {
-            mPos[mPos.size()-1]->
+            point->
             setX(mControlPanel->getLabels()[i]->getText()
                  .getFloatValue());
         };
-        labels[i+1]->onTextChange = [this, i]
+        labels[i+1]->onTextChange = [this, i, point]
         {
-            mPos[mPos.size()-1]->
+            point->
             setY(mControlPanel->getLabels()[i+1]->getText()
                  .getFloatValue());
         };
+        
+        
     }
 }

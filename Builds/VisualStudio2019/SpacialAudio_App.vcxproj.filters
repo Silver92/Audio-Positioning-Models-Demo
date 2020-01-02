@@ -2472,10 +2472,13 @@
     <ClInclude Include="..\..\Source\Audio_Helper.h">
       <Filter>SpacialAudio\Other</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\TODO.h">
+    <ClInclude Include="..\..\Source\Parameters.h">
       <Filter>SpacialAudio\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI_Dimensions.h">
+      <Filter>SpacialAudio\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\TODO.h">
       <Filter>SpacialAudio\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">
