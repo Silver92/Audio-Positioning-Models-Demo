@@ -248,6 +248,13 @@
 			path = "../../Source/Control_Panel.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		25DC18BDCE5FED03BBE63F56 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Parameters.h;
+			path = ../../Source/Parameters.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		281A25C3E7BD6C36707F2104 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -866,8 +873,9 @@
 			isa = PBXGroup;
 			children = (
 				05CA998495C713E197B49B2B,
-				2CD24A19C48D454554E1A1EA,
+				25DC18BDCE5FED03BBE63F56,
 				4728F5BF3FFA09FD98604887,
+				2CD24A19C48D454554E1A1EA,
 			);
 			name = Other;
 			sourceTree = "<group>";

@@ -22,20 +22,13 @@
 #include "DBAP.h"
 
 #include "PresetManager.h"
+#include "Parameters.h"
 
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-
-enum PanelModelType
-{
-    PanelModel_VBAP,
-    PanelModel_MDAP,
-    PanelModel_DBAP,
-    PanelModel_TotalNumModels
-};
 
 class MainComponent   : public Component
 {
