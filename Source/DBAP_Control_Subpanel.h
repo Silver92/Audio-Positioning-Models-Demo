@@ -11,10 +11,10 @@
 #pragma once
 
 #include "Input_Label.h"
-#include "Control_Panel.h"
+#include "PositionControl_Panel.h"
 
 class DBAPSubpanel
-:   public ControlPanel
+:   public PositionControl_Panel
 {
 public:
     DBAPSubpanel();

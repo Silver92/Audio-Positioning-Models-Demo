@@ -460,6 +460,9 @@
     <ClCompile Include="..\..\Source\Control_Panel.cpp">
       <Filter>SpacialAudio\UI\Contorl Panels</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\PositionControl_Panel.cpp">
+      <Filter>SpacialAudio\UI\Contorl Panels</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\VBAP_Control_Subpanel.cpp">
       <Filter>SpacialAudio\UI\Contorl Panels</Filter>
     </ClCompile>
@@ -2428,6 +2431,9 @@
       <Filter>SpacialAudio\Models</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Control_Panel.h">
+      <Filter>SpacialAudio\UI\Contorl Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PositionControl_Panel.h">
       <Filter>SpacialAudio\UI\Contorl Panels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\VBAP_Control_Subpanel.h">

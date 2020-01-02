@@ -18,32 +18,30 @@ MainComponent::MainComponent()
     addAndMakeVisible(mViewPanel.get());
     
     /** Initiate the control panel*/
-    mControlPanel.reset(new VBAPSubpanel());
-    mControlPanel->setBounds(VIEW_PANEL_WIDTH,
-                             0,
-                             CONTROL_PANEL_WIDTH,
-                             CONTROL_PANEL_HEIGHT);
+    mControlPanel.reset(new ControlPanel());
+    mControlPanel->getComboBox().onChange = [this]
+    {
+        comboBoxChanged(mControlPanel->getComboBox());
+    };
     addAndMakeVisible(mControlPanel.get());
     
-    /** Initiate the model manager */
-    mModelManager.reset(new VBAP());
     
-    /** Make connections between view and models */
-    modelInteractions();
+    mControlPanel->getComboBox().setSelectedId(PanelModel_VBAP + 1);
     
     /** Load the preset Manager and preset*/
-    mPresetManager.reset(new PresetManager());
-    mPresetManager->loadPreviousPreset(mControlPanel->getLabels());
-    prepareInputData();
-    mModelManager->calculate(mPos,
-                             mGainVals);
-    mViewPanel->m2DPanel->drawComponents(mPos,
-                                         mGainVals);
+//    mPresetManager.reset(new PresetManager());
+//    mPresetManager->loadPreviousPreset(mControlPanel->getLabels());
+//    prepareInputData();
+//    mModelManager->calculate(mPos, mGainVals);
+//    mViewPanel->m2DPanel->
+//    drawComponents(mPos, mGainVals);
 }
 
 MainComponent::~MainComponent()
 {
-    mPresetManager->saveCurrentPreset(mControlPanel->getLabels());
+//    mPresetManager->saveCurrentPreset(mControlPanel->getLabels());
+    mPos.clear();
+    mGainVals.clear();
 }
 
 //==============================================================================
@@ -70,7 +68,8 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
     switch (modelType) {
             
         case (PanelModel_VBAP):{
-            mControlPanel.reset(new VBAPSubpanel());
+            mControlPanel->getPositionPanel().
+            reset(new VBAPSubpanel());
             mModelManager.reset(new VBAP());
             mControlPanel->getRunButton().onClick = [this]
             {
@@ -81,7 +80,8 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
         }break;
             
         case (PanelModel_MDAP):{
-            mControlPanel.reset(new MDAPSubpanel());
+            mControlPanel->getPositionPanel().
+            reset(new MDAPSubpanel());
             mModelManager.reset(new MDAP());
             mControlPanel->getRunButton().onClick = [this]
             {
@@ -92,7 +92,8 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
         }break;
             
         case (PanelModel_DBAP):{
-            mControlPanel.reset(new DBAPSubpanel());
+            mControlPanel->getPositionPanel().
+            reset(new DBAPSubpanel());
             mModelManager.reset(new DBAP());
             mControlPanel->getRunButton().onClick = [this]
             {
@@ -109,26 +110,9 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
             
     }
     
-    mControlPanel->setBounds(VIEW_PANEL_WIDTH,
-                             0,
-                             CONTROL_PANEL_WIDTH,
-                             CONTROL_PANEL_HEIGHT);
-    addAndMakeVisible(mControlPanel.get());
-    
-    modelInteractions();
+    addAndMakeVisible(mControlPanel->getPositionPanel().get());
     prepareInputData();
     mModelType = modelType;
-}
-
-void MainComponent::modelInteractions()
-{
-    /**
-     Make connections between view and models
-     */
-    mControlPanel->getComboBox().onChange = [this]
-    {
-        comboBoxChanged(mControlPanel->getComboBox());
-    };
 }
 
 void MainComponent::prepareInputData()

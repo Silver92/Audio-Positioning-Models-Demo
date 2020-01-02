@@ -23,6 +23,10 @@
         <FILE id="K21y4y" name="Control_Panel.cpp" compile="1" resource="0"
               file="Source/Control_Panel.cpp"/>
         <FILE id="YJcCHM" name="Control_Panel.h" compile="0" resource="0" file="Source/Control_Panel.h"/>
+        <FILE id="Kkgniw" name="PositionControl_Panel.cpp" compile="1" resource="0"
+              file="Source/PositionControl_Panel.cpp"/>
+        <FILE id="M3OSkY" name="PositionControl_Panel.h" compile="0" resource="0"
+              file="Source/PositionControl_Panel.h"/>
         <FILE id="WTkmzr" name="VBAP_Control_Subpanel.cpp" compile="1" resource="0"
               file="Source/VBAP_Control_Subpanel.cpp"/>
         <FILE id="zCSUt0" name="VBAP_Control_Subpanel.h" compile="0" resource="0"
