@@ -19,7 +19,6 @@
 #define PRESET_FILE_EXTENSION ".kpf"
 
 PresetManager::PresetManager()
-: posList("StateInfo")
 {
     mPresetDirectory =
     (File::getSpecialLocation(File::userDesktopDirectory)).getFullPathName();
@@ -35,10 +34,15 @@ PresetManager::PresetManager()
     {
         myCurrentPreset = di.getFile();
     }
+    
     if (myCurrentPreset.exists()) {
         std::cout << "Preset exists" << std::endl;
         XmlDocument xmlDoc(myCurrentPreset);
-        mainElement = xmlDoc.getDocumentElement();
+        posList = xmlDoc.getDocumentElement();
+    } else {
+        myCurrentPreset = File(mPresetDirectory + directorySeparator +
+                               "SpacialAudio" + PRESET_FILE_EXTENSION);
+        myCurrentPreset.create();
     }
 }
 
@@ -50,18 +54,23 @@ PresetManager::~PresetManager()
 void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>>& mPos,
                                       PanelModelType inType)
 {
-    // create an element to save the current model type
+    // create an node to save the current model type
     XmlElement* type = new XmlElement("CurrentModelType");
     type->setAttribute("ModelType", inType);
-    if (posList.containsChildElement(type)) {
-        auto oldElement = posList.
-        getChildByName("CurrentModelType");
-        posList.replaceChildElement(oldElement, type);
+    
+    auto oldElement = posList->
+    getChildByName("CurrentModelType");
+    if (oldElement != nullptr) {
+        posList->replaceChildElement(oldElement, type);
     } else {
-        posList.addChildElement(type);
+        posList->addChildElement(type);
     }
     
-    // create and add children node
+    std::cout << "Combobox index saved: " <<
+    posList->getChildByName("CurrentModelType")->
+    getIntAttribute("ModelType") << std::endl;
+    
+    // create and add children model node
     XmlElement* pos = new XmlElement(ModelTypeLabel[inType]);
     for (int i = 0; i < mPos.size() - 1; i += 2)
     {
@@ -70,65 +79,67 @@ void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>>& mPos,
         String s2 = "y" + String(i);
         pos->setAttribute (s1, mPos[i]->getText());
         pos->setAttribute (s2, mPos[i+1]->getText());
+        
+        std::cout << "x: " << mPos[i]->getText() <<
+        " y: " << mPos[i+1]->getText() << std::endl;
     }
-    if (posList.containsChildElement(pos)) {
-        auto oldElement = posList.
-        getChildByName(ModelTypeLabel[inType]);
-        posList.replaceChildElement(oldElement, pos);
+    
+    oldElement = posList->
+    getChildByName(ModelTypeLabel[inType]);
+    if (oldElement != nullptr) {
+        posList->replaceChildElement(oldElement, pos);
     } else {
-        posList.addChildElement(pos);
+        posList->addChildElement(pos);
     }
     
+    posList->writeTo(myCurrentPreset);
     
-    // create a file
-    File presetFile = File(mPresetDirectory + directorySeparator +
-                           "SpacialAudio" + PRESET_FILE_EXTENSION);
-    if (!presetFile.exists()) {
-        presetFile.create();
-    } else {
-        presetFile.deleteFile();
+    std::cout << "Total num elements: " <<
+    posList->getNumChildElements() << std::endl;
+    for (int i = 0; i < posList->getNumChildElements(); i++) {
+        std::cout << "Element: " <<
+        posList->getChildElement(i)->getTagName()
+        << std::endl;
     }
-    
-    posList.writeTo(presetFile);
 }
 
 void PresetManager::loadPreviousPreset(std::vector<std::shared_ptr<Label>>& mPos,
                                        PanelModelType inType)
 {
     // check we're looking at the right kind of document..
-    if (mainElement != nullptr) {
+    if (posList != nullptr) {
         // check the main tag
-        if (mainElement->getTagName() == "StateInfo") {
-            auto element = mainElement->
+        if (posList->getTagName() == "StateInfo") {
+            auto element = posList->
             getChildByName(ModelTypeLabel[inType]);
-            std::cout << "nullptr? " << (element == nullptr) << std::endl;
-                if (element) {
-                    std::cout << element->getStringAttribute("x0") << std::endl;
-                    std::cout << element->getStringAttribute("y0") << std::endl;
-                    for (int i = 0; i < mPos.size() - 1; i += 2)
-                    {
-                        // create an inner element..
-                        String s1 = "x" + String(i);
-                        String s2 = "y" + String(i);
-                        mPos[i]->setText(element->getStringAttribute(s1),
-                                         dontSendNotification);
-                        mPos[i+1]->setText(element->getStringAttribute(s2),
-                                           dontSendNotification);
-                        
-                        std::cout << mPos[i]->getText() << " "
-                        << mPos[i+1]->getText() << std::endl;
-                    }
+            std::cout << "Loading buffer nullptr? " <<
+            (element == nullptr) << std::endl;
+            if (element) {
+                for (int i = 0; i < mPos.size() - 1; i += 2)
+                {
+                    // create an inner element..
+                    String s1 = "x" + String(i);
+                    String s2 = "y" + String(i);
+                    mPos[i]->setText(element->getStringAttribute(s1),
+                                     dontSendNotification);
+                    mPos[i+1]->setText(element->getStringAttribute(s2),
+                                       dontSendNotification);
+                    
+                    std::cout << "x0: " << mPos[i]->getText()
+                            << " y0: " << mPos[i+1]->getText()
+                    << std::endl;
                 }
+            }
         }
     }
 }
 
 PanelModelType PresetManager::loadPreviousModelType()
 {
-    if (mainElement != nullptr) {
+    if (posList != nullptr) {
         // check the main tag
-        if (mainElement->getTagName() == "StateInfo") {
-            auto typeElement = mainElement->
+        if (posList->getTagName() == "StateInfo") {
+            auto typeElement = posList->
             getChildByName("CurrentModelType");
             if (typeElement != nullptr) {
                 return (PanelModelType)typeElement->
