@@ -23,6 +23,7 @@ VBAP::~VBAP()
 void VBAP::calculate(const std::vector<std::shared_ptr<Point<float>>>& inPos,
                      std::vector<float>& inGainVectors)
 {
+    std::cout << "VBAP Start " << std::endl;
     // Get the listener position
     float x0 = inPos[0]->getX();
     float y0 = inPos[0]->getY();

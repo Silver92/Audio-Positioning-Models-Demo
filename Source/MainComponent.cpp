@@ -10,6 +10,7 @@
 
 //==============================================================================
 MainComponent::MainComponent()
+: mModelType(PanelModelType_TotalNumModels)
 {
     setSize (MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     
@@ -35,8 +36,9 @@ MainComponent::MainComponent()
 
 MainComponent::~MainComponent()
 {
-    mPresetManager->saveCurrentPreset(mControlPanel->getLabels(),
-                                      mModelType);
+    mPresetManager->
+    saveCurrentPreset(mControlPanel->getLabels(),
+                      mModelType);
     mPos.clear();
     mGainVals.clear();
 }
@@ -59,7 +61,13 @@ void MainComponent::resized()
 //==============================================================================
 void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
 {
-    
+    if (mModelType != PanelModelType_TotalNumModels) {
+        std::cout << "save preset run " << ModelTypeLabel[mModelType] << std::endl;
+        mPresetManager->
+        saveCurrentPreset(mControlPanel->getLabels(),
+                          mModelType);
+    }
+
     PanelModelType modelType = static_cast<PanelModelType>
         (comboBoxThatHasChanged.getSelectedItemIndex());
     
@@ -71,9 +79,7 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
             mModelManager.reset(new VBAP());
             mControlPanel->getRunButton().onClick = [this]
             {
-                mModelManager->calculate(mPos, mGainVals);
-                mViewPanel->m2DPanel->
-                drawComponents(mPos, mGainVals);
+                calModelAndDraw(mModelType);
             };
         }break;
             
@@ -83,9 +89,7 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
             mModelManager.reset(new MDAP());
             mControlPanel->getRunButton().onClick = [this]
             {
-                mModelManager->calculate(mPos, mGainVals);
-                mViewPanel->m2DPanel->
-                drawComponents(mPos, mGainVals);
+                calModelAndDraw(mModelType);
             };
         }break;
             
@@ -95,9 +99,7 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
             mModelManager.reset(new DBAP());
             mControlPanel->getRunButton().onClick = [this]
             {
-                mModelManager->calculate(mPos, mGainVals);
-                mViewPanel->m2DPanel->
-                drawComponents(mPos, mGainVals, false);
+                calModelAndDraw(mModelType);
             };
         }break;
             
@@ -113,15 +115,7 @@ void MainComponent::comboBoxChanged(ComboBox& comboBoxThatHasChanged)
     mPresetManager->
     loadPreviousPreset(mControlPanel->getLabels(), modelType);
     prepareInputData();
-    
-    std::cout << "mPos " << mPos.size() << std::endl;
-    
-    mModelManager->calculate(mPos, mGainVals);
-    modelType == PanelModelType_DBAP ?
-    (mViewPanel->m2DPanel->
-     drawComponents(mPos, mGainVals, false)) :
-    (mViewPanel->m2DPanel->
-    drawComponents(mPos, mGainVals));
+    calModelAndDraw(modelType);
     
     mModelType = modelType;
 }
@@ -159,4 +153,13 @@ void MainComponent::prepareInputData()
         
         
     }
+}
+
+void MainComponent::calModelAndDraw(PanelModelType modelType) {
+    mModelManager->calculate(mPos, mGainVals);
+    modelType == PanelModelType_DBAP ?
+    (mViewPanel->m2DPanel->
+     drawComponents(mPos, mGainVals, false)) :
+    (mViewPanel->m2DPanel->
+     drawComponents(mPos, mGainVals));
 }

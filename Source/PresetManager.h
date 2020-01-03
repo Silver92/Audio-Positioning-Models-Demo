@@ -24,9 +24,10 @@ public:
                             PanelModelType inType);
     PanelModelType loadPreviousModelType();
 private:
+    
     String mPresetDirectory;
     File myCurrentPreset;
-    std::unique_ptr<XmlElement> mainElement;
     
-    XmlElement posList;
+    /** The saving and  loading buffer */
+    std::unique_ptr<XmlElement> posList;
 };
