@@ -43,6 +43,7 @@ PresetManager::PresetManager()
         myCurrentPreset = File(mPresetDirectory + directorySeparator +
                                "SpacialAudio" + PRESET_FILE_EXTENSION);
         myCurrentPreset.create();
+        posList.reset(new XmlElement("StateInfo"));
     }
 }
 
