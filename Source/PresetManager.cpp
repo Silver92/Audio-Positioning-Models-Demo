@@ -11,7 +11,7 @@
 #include "PresetManager.h"
 
 #if JUCE_WINDOWS
-    static const String directorySeparator = "\\";
+    static const juce::String directorySeparator = "\\";
 #elif JUCE_MAC
     static const String directorySeparator = "/";
 #endif
@@ -21,29 +21,29 @@
 PresetManager::PresetManager()
 {
     mPresetDirectory =
-    (File::getSpecialLocation(File::userDesktopDirectory)).getFullPathName();
+    (juce::File::getSpecialLocation(juce::File::userDesktopDirectory)).getFullPathName();
     
-    if (!File(mPresetDirectory).exists()) {
-        File(mPresetDirectory).createDirectory();
+    if (!juce::File(mPresetDirectory).exists()) {
+        juce::File(mPresetDirectory).createDirectory();
     }
     
-    for (DirectoryIterator di (File(mPresetDirectory),
+    for (juce::DirectoryIterator di (juce::File(mPresetDirectory),
                                false,
-                               "*"+(String)PRESET_FILE_EXTENSION,
-                               File::TypesOfFileToFind::findFiles); di.next();)
+                               "*"+(juce::String)PRESET_FILE_EXTENSION,
+                                juce::File::TypesOfFileToFind::findFiles); di.next();)
     {
         myCurrentPreset = di.getFile();
     }
     
     if (myCurrentPreset.exists()) {
         std::cout << "Preset exists" << std::endl;
-        XmlDocument xmlDoc(myCurrentPreset);
+        juce::XmlDocument xmlDoc(myCurrentPreset);
         posList = xmlDoc.getDocumentElement();
     } else {
-        myCurrentPreset = File(mPresetDirectory + directorySeparator +
+        myCurrentPreset = juce::File(mPresetDirectory + directorySeparator +
                                "SpacialAudio" + PRESET_FILE_EXTENSION);
         myCurrentPreset.create();
-        posList.reset(new XmlElement("StateInfo"));
+        posList.reset(new juce::XmlElement("StateInfo"));
     }
 }
 
@@ -52,11 +52,11 @@ PresetManager::~PresetManager()
     
 }
 
-void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>>& mPos,
+void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<juce::Label>>& mPos,
                                       PanelModelType inType)
 {
     // create an node to save the current model type
-    XmlElement* type = new XmlElement("CurrentModelType");
+    juce::XmlElement* type = new juce::XmlElement("CurrentModelType");
     type->setAttribute("ModelType", inType);
     
     auto oldElement = posList->
@@ -72,12 +72,12 @@ void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>>& mPos,
     getIntAttribute("ModelType") << std::endl;
     
     // create and add children model node
-    XmlElement* pos = new XmlElement(ModelTypeLabel[inType]);
+    juce::XmlElement* pos = new juce::XmlElement(ModelTypeLabel[inType]);
     for (int i = 0; i < mPos.size() - 1; i += 2)
     {
         // create an inner element..
-        String s1 = "x" + String(i);
-        String s2 = "y" + String(i);
+        juce::String s1 = "x" + juce::String(i);
+        juce::String s2 = "y" + juce::String(i);
         pos->setAttribute (s1, mPos[i]->getText());
         pos->setAttribute (s2, mPos[i+1]->getText());
         
@@ -104,7 +104,7 @@ void PresetManager::saveCurrentPreset(std::vector<std::shared_ptr<Label>>& mPos,
     }
 }
 
-void PresetManager::loadPreviousPreset(std::vector<std::shared_ptr<Label>>& mPos,
+void PresetManager::loadPreviousPreset(std::vector<std::shared_ptr<juce::Label>>& mPos,
                                        PanelModelType inType)
 {
     // check we're looking at the right kind of document..
@@ -119,12 +119,12 @@ void PresetManager::loadPreviousPreset(std::vector<std::shared_ptr<Label>>& mPos
                 for (int i = 0; i < mPos.size() - 1; i += 2)
                 {
                     // create an inner element..
-                    String s1 = "x" + String(i);
-                    String s2 = "y" + String(i);
+                    juce::String s1 = "x" + juce::String(i);
+                    juce::String s2 = "y" + juce::String(i);
                     mPos[i]->setText(element->getStringAttribute(s1),
-                                     dontSendNotification);
+                        juce::dontSendNotification);
                     mPos[i+1]->setText(element->getStringAttribute(s2),
-                                       dontSendNotification);
+                        juce::dontSendNotification);
                     
                     std::cout << "x0: " << mPos[i]->getText()
                             << " y0: " << mPos[i+1]->getText()
