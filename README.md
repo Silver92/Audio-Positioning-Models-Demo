@@ -11,10 +11,18 @@ The user can adjust the positions of the listener, speakers and supposed virtual
 Building Projects
 ==================
 
+The project is built with CMake. Make sure to have the latest version of CMake installed before building the project.
+
 Visual Studio
 -------------
 
-The project's default generator is Visual Studio 17 2022.
+The project's default generator is Visual Studio 17 2022. JUCE framework is included as a submodule. To build the project, the JUCE framework must be updated ahead with the following command:
+
+```
+git submodule update --remote --merge JUCE
+```
+
+After the submodule update finished, the following commands could be executed to build the project.
 
 ```
 cd current/project/path
