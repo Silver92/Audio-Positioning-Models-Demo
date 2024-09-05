@@ -9,8 +9,7 @@
 */
 
 #pragma once
-
-#include "JuceHeader.h"
+#include <cmath>
 
 inline float denormalize(float inValue)
 {

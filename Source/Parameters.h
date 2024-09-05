@@ -9,6 +9,7 @@
 */
 
 #pragma once
+#include <juce_gui_basics/juce_gui_basics.h>
 
 enum PanelModelType
 {
@@ -18,7 +19,7 @@ enum PanelModelType
     PanelModelType_TotalNumModels
 };
 
-static String ModelTypeLabel[PanelModelType_TotalNumModels] =
+static juce::String ModelTypeLabel[PanelModelType_TotalNumModels] =
 {
     "VBAP",
     "MDAP",

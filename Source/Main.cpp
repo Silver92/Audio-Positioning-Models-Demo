@@ -8,18 +8,18 @@
   ==============================================================================
 */
 
-#include "../JuceLibraryCode/JuceHeader.h"
+//#include "juce_gui_basics/juce_gui_basics.h"
 #include "MainComponent.h"
 
 //==============================================================================
-class SpacialAudioApplication  : public JUCEApplication
+class SpacialAudioApplication final : public juce::JUCEApplication
 {
 public:
     //==============================================================================
     SpacialAudioApplication() {}
 
-    const String getApplicationName() override       { return ProjectInfo::projectName; }
-    const String getApplicationVersion() override    { return ProjectInfo::versionString; }
+    const String getApplicationName() override       { return JUCE_APPLICATION_NAME_STRING; }
+    const String getApplicationVersion() override    { return JUCE_APPLICATION_VERSION_STRING; }
     bool moreThanOneInstanceAllowed() override       { return true; }
 
     //==============================================================================
@@ -60,7 +60,7 @@ public:
     class MainWindow    : public DocumentWindow
     {
     public:
-        MainWindow (String name)  : DocumentWindow (name,
+        explicit MainWindow (String name)  : DocumentWindow (name,
                                                     Desktop::getInstance().getDefaultLookAndFeel()
                                                                           .findColour (ResizableWindow::backgroundColourId),
                                                     DocumentWindow::allButtons)

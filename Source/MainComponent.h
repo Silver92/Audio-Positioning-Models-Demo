@@ -8,21 +8,24 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "Control_Panel.h"
-#include "VBAP_Control_Subpanel.h"
-#include "MDAP_Control_Subpanel.h"
-#include "DBAP_Control_Subpanel.h"
+#include "juce_gui_basics/juce_gui_basics.h"
 
-#include "View_Panel.h"
+#include "UI/Control_Panel.h"
+#include "UI/VBAP_Control_Subpanel.h"
+#include "UI/MDAP_Control_Subpanel.h"
+#include "UI/DBAP_Control_Subpanel.h"
 
-#include "Model_Manager.h"
-#include "VBAP.h"
-#include "MDAP.h"
-#include "DBAP.h"
+#include "UI/View_Panel.h"
+
+#include "Models/Model_Manager.h"
+#include "Models/VBAP.h"
+#include "Models/MDAP.h"
+#include "Models/DBAP.h"
 
 #include "PresetManager.h"
 #include "Parameters.h"
+
+using namespace juce;
 
 //==============================================================================
 /*
@@ -38,11 +41,11 @@ public:
     ~MainComponent();
 
 //==============================================================================
-    void paint (Graphics&) override;
+    void paint (juce::Graphics&) override;
     void resized() override;
     
 //==============================================================================
-    void comboBoxChanged(ComboBox& comboBoxThatHasChanged);
+    void comboBoxChanged(juce::ComboBox& comboBoxThatHasChanged);
     void calModelAndDraw(PanelModelType modelType);
 
 private:
