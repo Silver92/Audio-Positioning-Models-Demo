@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "../Audio_Helper.h"
+#include "Audio_Helper.h"
 #include "juce_gui_basics/juce_gui_basics.h"
 
 class ModelManager

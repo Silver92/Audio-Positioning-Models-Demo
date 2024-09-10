@@ -25,7 +25,7 @@ git submodule update --remote --merge JUCE
 After the submodule update finished, the following commands could be executed to build the project.
 
 ```
-cd current/project/path
+cd /current/project/path
 cmake -B Builds/
 cmake --build Builds/
 ```
