@@ -1,10 +1,10 @@
-# Spacial-Audio App
+# Spacial-Audio App For the Virtual Source Locationing
 
 ## Introduction
 
-An GUI application built with JUCE framework which calculates the dBFS of 4 surrounded speakers to simulate the virtual sound source in the room.
+This GUI application, built with the JUCE framework, calculates the dBFS levels of four surround speakers to simulate a virtual sound source in a room. This simple model simulates a virtual sound source in a fixed position over time, which is applicable in traditional movie theaters or virtual game scenes that require a surround sound system.
 
-The user can adjust the positions of the listener, speakers and supposed virtual sound source to calculate the volume outputs of the 4 speakers.
+Users can adjust the positions of the listener, speakers, and virtual sound source to calculate the output levels of the four speakers.
 
 <center><img src="https://github.com/Silver92/Spacial-Audio/blob/Develop/Sample%20Pictures/Screen%20Shot%202019-10-04%20at%2014.27.13.png" alt="Screen Shot 2019-11-11 at 19.08.05" align="center"/></center>
 
